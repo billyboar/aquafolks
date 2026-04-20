@@ -1,0 +1,5 @@
+- Generate output in nicely structured markdown format
+- Prioritize using golang and react for any projects, if there are any worthy alternatives that can be used for this project please include it in the report
+- Figure out how the architecture could look like. Avoid over-engineering and optimizing too much as it's only MVP. Prioritize saving costs initially. Check if it can be operated on serverless functions. My preferrable hosts are digitalocean and hetzner also check how they fares against AWS. 
+- List what libraries I can use to create this product and list the pros and cons briefly and include github stars count
+- Define what features it should have and list them in nice organized nested format like 

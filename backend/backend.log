@@ -1,0 +1,45 @@
+2026/04/09 10:37:55 ✓ Connected to database
+2026/04/09 10:37:55 ✓ Connected to storage
+2026/04/09 10:37:55 🚀 Server starting on port 3000
+
+ ┌───────────────────────────────────────────────────┐ 
+ │                   AquaBook API                    │ 
+ │                  Fiber v2.52.12                   │ 
+ │               http://127.0.0.1:3000               │ 
+ │       (bound on host 0.0.0.0 and port 3000)       │ 
+ │                                                   │ 
+ │ Handlers ........... 169  Processes ........... 1 │ 
+ │ Prefork ....... Disabled  PID ........... 1897899 │ 
+ └───────────────────────────────────────────────────┘ 
+
+10:38:06 | 200 |   72.005742ms | 127.0.0.1 | POST | /api/auth/login | -
+10:38:06 | 200 |    2.958181ms | 127.0.0.1 | GET | /api/v1/admin/reports | -
+10:38:06 | 200 |    1.380375ms | 127.0.0.1 | GET | /api/v1/admin/logs | -
+10:50:28 | 404 |      60.113µs | 127.0.0.1 | POST | /api/v1/auth/login | Cannot POST /api/v1/auth/login
+10:50:28 | 401 |      15.509µs | 127.0.0.1 | GET | /api/v1/admin/stats | -
+10:51:09 | 404 |       53.52µs | 127.0.0.1 | POST | /api/v1/auth/login | Cannot POST /api/v1/auth/login
+10:51:09 | 401 |      28.534µs | 127.0.0.1 | GET | /api/v1/admin/stats | -
+10:51:12 | 404 |      34.906µs | 127.0.0.1 | POST | /api/v1/auth/login | Cannot POST /api/v1/auth/login
+10:51:15 | 200 |   43.372119ms | 127.0.0.1 | POST | /api/auth/login | -
+10:51:20 | 200 |   63.189625ms | 127.0.0.1 | POST | /api/auth/login | -
+10:51:20 | 200 |    3.623553ms | 127.0.0.1 | GET | /api/v1/admin/stats | -
+10:52:25 | 200 |   70.216495ms | 127.0.0.1 | POST | /api/auth/login | -
+10:52:25 | 200 |    2.829098ms | 127.0.0.1 | GET | /api/v1/admin/reports | -
+10:56:41 | 200 |    60.72893ms | 127.0.0.1 | POST | /api/auth/login | -
+10:56:41 | 200 |    3.385004ms | 127.0.0.1 | GET | /api/v1/admin/stats | -
+10:56:41 | 200 |      930.66µs | 127.0.0.1 | GET | /api/v1/admin/reports | -
+10:56:41 | 200 |    1.232668ms | 127.0.0.1 | GET | /api/v1/admin/users | -
+10:56:41 | 200 |    1.517543ms | 127.0.0.1 | GET | /api/v1/admin/logs | -
+10:56:48 | 200 |   40.282642ms | 127.0.0.1 | POST | /api/auth/login | -
+10:56:48 | 500 |     891.847µs | 127.0.0.1 | POST | /api/v1/reports | -
+10:56:53 | 200 |   57.740091ms | 127.0.0.1 | POST | /api/auth/login | -
+10:56:53 | 500 |     875.776µs | 127.0.0.1 | POST | /api/v1/reports | -
+10:59:48 | 200 |   57.718611ms | 127.0.0.1 | POST | /api/auth/login | -
+10:59:48 | 201 |   10.628972ms | 127.0.0.1 | POST | /api/v1/reports | -
+10:59:53 | 200 |   62.605318ms | 127.0.0.1 | POST | /api/auth/login | -
+10:59:53 | 500 |     690.628µs | 127.0.0.1 | POST | /api/v1/reports | -
+10:59:59 | 200 |   57.488769ms | 127.0.0.1 | POST | /api/auth/login | -
+10:59:59 | 201 |    1.991745ms | 127.0.0.1 | POST | /api/v1/reports | -
+11:00:04 | 200 |   59.343396ms | 127.0.0.1 | POST | /api/auth/login | -
+11:00:04 | 201 |    1.522913ms | 127.0.0.1 | POST | /api/v1/reports | -
+2026/04/09 17:37:03 Shutting down server...

@@ -1,0 +1,4 @@
+2026/04/07 11:16:10 ✓ Connected to database
+2026/04/07 11:16:10 ✓ Connected to storage
+2026/04/07 11:16:10 🚀 Server starting on port 3000
+2026/04/07 11:16:10 Failed to start server:failed to listen: listen tcp4 :3000: bind: address already in use

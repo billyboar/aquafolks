@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#65655c",
+                    "on-secondary-container": "#005267",
+                    "secondary-container": "#9ae1ff",
+                    "on-secondary-fixed": "#003d4f",
+                    "secondary-dim": "#006079",
+                    "secondary-fixed": "#9ae1ff",
+                    "surface-container-highest": "#eae9db",
+                    "inverse-surface": "#0e0f09",
+                    "surface-container": "#f6f4e7",
+                    "secondary-fixed-dim": "#8cd3f0",
+                    "on-tertiary-fixed": "#483a00",
+                    "error-dim": "#9f0519",
+                    "on-tertiary-container": "#5e4d00",
+                    "inverse-primary": "#a0f3da",
+                    "on-error": "#ffffff",
+                    "on-surface": "#383831",
+                    "on-primary-container": "#005949",
+                    "tertiary-fixed-dim": "#edcd58",
+                    "inverse-on-surface": "#9e9d94",
+                    "on-error-container": "#570008",
+                    "primary-fixed": "#9aedd4",
+                    "tertiary-container": "#fcdb65",
+                    "error": "#c0262d",
+                    "background": "#fefcf1",
+                    "primary-dim": "#006452",
+                    "on-primary-fixed": "#004437",
+                    "on-tertiary-fixed-variant": "#6a5600",
+                    "outline-variant": "#bbbab0",
+                    "surface-dim": "#e4e3d5",
+                    "error-container": "#fb5151",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#f0eee1",
+                    "primary-fixed-dim": "#8cdec7",
+                    "tertiary-fixed": "#fcdb65",
+                    "surface-variant": "#eae9db",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#13715e",
+                    "tertiary-dim": "#6a5600",
+                    "on-primary-fixed-variant": "#006452",
+                    "tertiary": "#786200",
+                    "primary": "#13715e",
+                    "on-secondary-fixed-variant": "#005c74",
+                    "on-secondary": "#ffffff",
+                    "outline": "#818178",
+                    "surface-bright": "#fefcf1",
+                    "surface-container-low": "#fbfaee",
+                    "secondary": "#196d86",
+                    "surface": "#fefcf1",
+                    "primary-container": "#9aedd4",
+                    "on-background": "#383831"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #13715e 0%, #9aedd4 100%);
+        }
+        .tonal-lift {
+            box-shadow: 0 20px 40px rgba(56, 56, 49, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-[#fefcf1]/80 dark:bg-[#383831]/80 backdrop-blur-xl shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
+<div class="text-xl font-bold text-[#13715e] tracking-tight font-['Plus_Jakarta_Sans']">Aquafolks</div>
+<div class="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<a class="text-[#65655c] dark:text-[#eae9db] hover:text-[#13715e] hover:bg-[#f6f4e7] transition-colors" href="#">Home</a>
+<a class="text-[#13715e] border-b-2 border-[#13715e] pb-1" href="#">Explore</a>
+<a class="text-[#65655c] dark:text-[#eae9db] hover:text-[#13715e] hover:bg-[#f6f4e7] transition-colors" href="#">Clubs</a>
+<a class="text-[#65655c] dark:text-[#eae9db] hover:text-[#13715e] hover:bg-[#f6f4e7] transition-colors" href="#">Marketplace</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#65655c]">notifications</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of a friendly man with a slight smile in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT-y3qSoT7TvqyhkWWG5HE8FsN58_v338kMHs8fXErwETOWE3Q-QCP2i9MbGV2U8fw1Pu0dJDN41fZr0tfs2U4S9rtEqAYdkbBopAqwPvJqG4f5yNDaXXV2EgA_cwqknHz5U1_sF133op1embY9SNuyxbOb_HfvkO4V41PyN-PYHaKTvFsPo8VsVdZZRdKQ3U8c58pjFIfP4Uv0odLfKorqvh5JboZX6FWBSsce1ipJLviZjJHFQSbHvDiC_OXGeMxNV7R51ePvkpx"/>
+</div>
+<button class="hidden md:block signature-gradient text-on-primary px-5 py-2 rounded-full font-medium text-sm active:scale-95 duration-150">New Post</button>
+</div>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<!-- Hero Section: Aquarium Gallery -->
+<section class="mb-12">
+<div class="grid grid-cols-12 gap-4 h-[600px]">
+<div class="col-span-12 md:col-span-8 rounded-lg overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="ultra-wide shot of a lush high-tech planted aquascape with crystal clear water and schooling neon tetras" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVJa4Rhhe0QXQpiP3KXt-JfIRk7E0xGGIyNvQOdUWgVQWnPx32HJRu_34u5h6X2M553FZIcclz5-1yvvM7CXmsbPw8TTmxa1jvvjyM40xN2wNqR_qFEkHJqZFHXB7vzRzBZuZmgzFp3SsxljPp-PEwFXmsU195uqOb8Zui-0bHqKHTSO1vsT9DvCv2BYdhWQKe06VjAKrDfyUBjsbhGWttgJmmqX-SDXRXmEPy9nlL_f7D4OtBMCoZvuBt5kZRm4ZlGmZ2FUMBtOoY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="hidden md:flex md:col-span-4 flex-col gap-4">
+<div class="h-1/2 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close-up of vibrant red cherry shrimp resting on bright green moss in a peaceful aquarium setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARynnVpJlORKtOytITxJ_pmoZofqC5CHtI1V9uJihjYB1So0KUqxfdL9B_VA3Qw33I8el5wa1TjFX7UgKxI-oK0ptr9O-kTtDFokqThneFXIOXjIMRDUbXVG6F_7uA_ErLTUTEXjeU_pS_HnREFeKfr9RmDXrRYH20OWiIFaCzaRKC4zAdeaJm831o5RRm7r2sctZi-oD3QENiBz3VWHGPj-_ux4bTsjKCqzpYU3-BTEptxan2hUHKWkxlJyIRB-_ZdyQOqI0fn3kB"/>
+</div>
+<div class="h-1/2 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="macro shot of translucent aquatic snails on a dark volcanic rock with soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC2X2gtkK6P_dDi9mLSAgEbmq_qzrfnzzftfm27TTyuYThI8j9Ta8POn3nXIdUjlu_cHSe58nnYZw2LK1v9RTk0000Z8FoEyBDvwPICp_3VdV9IOJFeVNXwpLxt-VV6XNVmTJcFiIjsUzO2IN_Jf5NDinW_dR9T7HSgPPVwp42wXjanapnAF8G6QpFXf84GrWtWwcMERYXNnTUrsUF0ZmTDH5hgUHx8tSKYSbQ25vjCgBUdoM6vkgTolfZAIOQYaHGCxf27gXsBnsa"/>
+</div>
+</div>
+</div>
+<!-- Tank Identity Header -->
+<div class="mt-8 flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h1 class="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight">Azure Reef Sanctuary</h1>
+<p class="text-on-surface-variant text-lg mt-2 font-medium">90 Gallon Custom Rimless • High-Tech Planted</p>
+<div class="flex gap-2 mt-4">
+<span class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-sm font-semibold tracking-wide">Freshwater</span>
+<span class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-sm font-semibold tracking-wide">Nature Style</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container-high text-primary hover:bg-surface-container-highest transition-colors font-semibold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>1.2k Likes</span>
+</button>
+<button class="signature-gradient text-on-primary px-8 py-3 rounded-full font-bold active:scale-95 duration-150 shadow-md">Follow Tank</button>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+<!-- Left Column: Specs & Livestock -->
+<div class="md:col-span-7 space-y-10">
+<!-- Tech Specs Bento Grid -->
+<div>
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                        Technical Specifications
+                    </h2>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">thermostat</span>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Temp</div>
+<div class="text-xl font-extrabold">24.5°C</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">water_drop</span>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">pH Level</div>
+<div class="text-xl font-extrabold">6.8 pH</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">lightbulb</span>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Lighting</div>
+<div class="text-xl font-extrabold">RGB-UV</div>
+</div>
+<div class="col-span-2 bg-surface-container p-6 rounded-lg flex items-center gap-6">
+<div class="h-16 w-16 bg-surface-container-lowest rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">filter_alt</span>
+</div>
+<div>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Filtration</div>
+<div class="text-lg font-bold">Eheim 600 Canister + Surface Skimmer</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 rounded-lg text-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">co2</span>
+<div class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">CO2</div>
+<div class="text-xl font-extrabold">3 bps</div>
+</div>
+</div>
+</div>
+<!-- Livestock List -->
+<div>
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pets</span>
+                        Livestock &amp; Flora
+                    </h2>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-5 rounded-lg tonal-lift flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="macro shot of a cardinal tetra showing bright iridescent blue and red stripes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoNuU7i-Lwi6ooVRl8e46w5ZBN5Eb-U2a_IvdWrdQ1SNNXcGFXircjhUCM4hy6YREvThAMntCi4eiraKKiV-Il4jp53rqEQjs5HuhohInddfGpFZPV8WdTkC8m77G9S8ieLg2-usQDWniBqp85sWzUGRNkw4bKDC7HSv3BCrForDMlkc1QNrp3YLJ8Ov1D80kgc01vHJle7VrQKA8Ha3ncljpbqepfsmOJUq--3KK4r6en5Xh9Dbj9gkUXj1N7ifGs2Qj9MePNPsgg"/>
+</div>
+<div>
+<div class="font-bold text-lg leading-tight">Cardinal Tetra</div>
+<div class="text-sm text-on-surface-variant">Paracheirodon axelrodi</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-extrabold text-primary">× 45</div>
+<div class="text-xs uppercase font-bold text-on-surface-variant">Active</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-lg tonal-lift flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="close up of bright green rotala rotundifolia leaves under intense aquarium light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuhF4DLEj0W3oTAIsC7_JIkCAhhEPAVhLsUdm74yu9FrK-s6F8dPN_Fq26qXLDCdsiBWB3ZzxYK3jT2zlkHo7pEKv-R46GVwVUxk9JrFu1tk2BkHloH_KWe2woiHgfSYppZ0_MfzNIDkyLm1Mh8jXKPuruD8KkD8IovxeIhdPoa_aKdn86eNXL5Mtm9bf_xtSyHx5sNE_-4Qn4KhGclhcKQdIwn7-uIsHVgBbBRqkfOjEe0psxFXc_G5Wo5S__4FJsYxCE4sbay54e"/>
+</div>
+<div>
+<div class="font-bold text-lg leading-tight">Rotala Rotundifolia</div>
+<div class="text-sm text-on-surface-variant">H'Ra Variety</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-extrabold text-primary">Backgr.</div>
+<div class="text-xs uppercase font-bold text-on-surface-variant">Flourishing</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Timeline & Comments -->
+<div class="md:col-span-5 space-y-10">
+<!-- Maintenance Log Timeline -->
+<div class="bg-surface-container-high p-8 rounded-lg">
+<h2 class="text-2xl font-bold mb-8">Maintenance Log</h2>
+<div class="relative space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/30">
+<!-- Timeline Item 1 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-high">
+<span class="material-symbols-outlined text-[14px] text-on-primary">water_lux</span>
+</div>
+<div>
+<span class="text-xs font-extrabold text-primary uppercase">Today</span>
+<p class="font-bold">50% Water Change &amp; Trim</p>
+<p class="text-sm text-on-surface-variant mt-1 italic">Rotala was reaching the surface, heavy pruning performed.</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center ring-4 ring-surface-container-high">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-container">science</span>
+</div>
+<div>
+<span class="text-xs font-bold text-on-surface-variant uppercase">3 Days Ago</span>
+<p class="font-bold">Parameter Check</p>
+<p class="text-sm text-on-surface-variant mt-1">Nitrates slightly high, adjusted liquid fertilization dose.</p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center ring-4 ring-surface-container-high">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-container">cleaning_services</span>
+</div>
+<div>
+<span class="text-xs font-bold text-on-surface-variant uppercase">Last Week</span>
+<p class="font-bold">Filter Deep Clean</p>
+<p class="text-sm text-on-surface-variant mt-1">Cleaned sponge media in tank water. Replaced Purigen.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Community Discussion -->
+<div>
+<h2 class="text-2xl font-bold mb-6">Community Thoughts</h2>
+<div class="bg-surface-container-low p-6 rounded-lg space-y-6">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="profile of a woman with a bright smile in a natural outdoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF0PygiwXS8boEhVwfCClmtg59rZBN52Eq21nJBJr3jX_RyIEofTOyHuhqQQlUEKgVN0O00vwb8ZgVeVoQ8y61SoKhtBfVbWGyBqOf0phH30rh6rvwvOtmvoL5npDefepJo_ufbkQd6EkV58EQQsQpM1AoBCDB7SFxg3pPM86JAk0zNS1SUSanEOTcCNaWDz204e3t4hvh4ir8Hmjik_vVHPSVdKU0k826BMWotz6Gn3inuRCZAhIl6xRcLaruiM9D59kDvhQ8zBFw"/>
+</div>
+<div class="flex-1 bg-surface-container-lowest p-4 rounded-lg">
+<div class="flex justify-between">
+<span class="font-bold text-sm">AquaLover99</span>
+<span class="text-xs text-on-surface-variant">2h ago</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">The color on those Rotalas is insane! What light settings are you running for that red?</p>
+<div class="flex gap-4 mt-3">
+<button class="text-xs font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined text-sm">thumb_up</span> 12</button>
+<button class="text-xs font-bold text-on-surface-variant">Reply</button>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a man with glasses looking towards the camera with a neutral expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqwIAB7EY-mwmIa_-9_92PwbSNmcz6qFKJuLundfMUiw94EckCpxklqNUswBLYcbTp1J2Pa5gWdkeVxn6san3oPUdEyI399Xw1Dh0nyeSyw-OzImbQ69Wy3F4Ox0s9hodvXDuCFmXU9HQiSaWus0b3Py2U5_dKnU9DOKW_y4DHowlhmdol-8Q-eG_M_4qz6rCk67ChVAjH49DpKKOXJutFx5gAx3VnhIdaTCdiWrK-NF8jwh-r3JRzgw3KS-NFX0E5Nt8xB9HLC8za"/>
+</div>
+<div class="flex-1">
+<textarea class="w-full bg-surface-container-high border-none rounded-lg p-4 text-sm focus:ring-1 focus:ring-primary/20 placeholder:text-on-surface-variant" placeholder="Share your feedback..." rows="2"></textarea>
+<div class="flex justify-end mt-2">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full text-xs font-bold">Post Comment</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f6f4e7] dark:bg-[#383831] w-full py-12 rounded-t-[2rem] mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-10 max-w-7xl mx-auto">
+<div class="text-[#65655c] dark:text-[#bbbab0] font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest mb-6 md:mb-0">
+                © 2024 Submerged Sanctuary. Dive deep.
+            </div>
+<div class="flex gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-[#65655c] hover:text-[#13715e] underline underline-offset-4" href="#">Support</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-[#65655c] hover:text-[#13715e] underline underline-offset-4" href="#">Guidelines</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-[#65655c] hover:text-[#13715e] underline underline-offset-4" href="#">About Us</a>
+</div>
+</div>
+</footer>
+</body></html>

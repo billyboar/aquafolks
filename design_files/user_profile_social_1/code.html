@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aquafolks | Enthusiast Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            background: rgba(254, 252, 241, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #13715e 0%, #9aedd4 100%);
+        }
+        .tonal-lift {
+            box-shadow: 0 20px 40px rgba(56, 56, 49, 0.06);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#65655c",
+                        "on-secondary-container": "#005267",
+                        "secondary-container": "#9ae1ff",
+                        "on-secondary-fixed": "#003d4f",
+                        "secondary-dim": "#006079",
+                        "secondary-fixed": "#9ae1ff",
+                        "surface-container-highest": "#eae9db",
+                        "inverse-surface": "#0e0f09",
+                        "surface-container": "#f6f4e7",
+                        "secondary-fixed-dim": "#8cd3f0",
+                        "on-tertiary-fixed": "#483a00",
+                        "error-dim": "#9f0519",
+                        "on-tertiary-container": "#5e4d00",
+                        "inverse-primary": "#a0f3da",
+                        "on-error": "#ffffff",
+                        "on-surface": "#383831",
+                        "on-primary-container": "#005949",
+                        "tertiary-fixed-dim": "#edcd58",
+                        "inverse-on-surface": "#9e9d94",
+                        "on-error-container": "#570008",
+                        "primary-fixed": "#9aedd4",
+                        "tertiary-container": "#fcdb65",
+                        "error": "#c0262d",
+                        "background": "#fefcf1",
+                        "primary-dim": "#006452",
+                        "on-primary-fixed": "#004437",
+                        "on-tertiary-fixed-variant": "#6a5600",
+                        "outline-variant": "#bbbab0",
+                        "surface-dim": "#e4e3d5",
+                        "error-container": "#fb5151",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#f0eee1",
+                        "primary-fixed-dim": "#8cdec7",
+                        "tertiary-fixed": "#fcdb65",
+                        "surface-variant": "#eae9db",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#13715e",
+                        "tertiary-dim": "#6a5600",
+                        "on-primary-fixed-variant": "#006452",
+                        "tertiary": "#786200",
+                        "primary": "#13715e",
+                        "on-secondary-fixed-variant": "#005c74",
+                        "on-secondary": "#ffffff",
+                        "outline": "#818178",
+                        "surface-bright": "#fefcf1",
+                        "surface-container-low": "#fbfaee",
+                        "secondary": "#196d86",
+                        "surface": "#fefcf1",
+                        "primary-container": "#9aedd4",
+                        "on-background": "#383831"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-[#fefcf1]/80 dark:bg-[#383831]/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#13715e] tracking-tight">Aquafolks</span>
+<div class="hidden md:flex gap-6 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Home</a>
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Explore</a>
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Clubs</a>
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Marketplace</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center gap-2 px-5 py-2 rounded-full signature-gradient text-on-primary font-semibold text-sm shadow-sm active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                    New Post
+                </button>
+<div class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User profile" data-alt="Close-up portrait of a friendly man with a warm smile in soft natural lighting, professional photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMl002F0R4_zoT9rB4XMppsbOK1AEbTiMt7vuVCKv70C4Gs87vZCG5wL0mlgG94S39I-0giXmtHhRY5ugsmcywr6UN10o2PmkU1MImjSKuojj-SthfflsJvCbF_0YkXhbFYH5_KKRRsJdWmLQ8Boa5iSRt5VoHyon1uGLjnY95HzsSWZridH61DEh8Kgn7dSkxJ_JfE1H4v6faKgh4QEduOOMmw8qA19V4eXF1IQIPHtSyJI3NCl3KDSSF_7X7M4XzTVRJigGMQdyI"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 pt-12">
+<!-- Profile Header Section -->
+<section class="relative mb-16">
+<div class="h-64 md:h-80 w-full rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Wide cinematic shot of a vibrant, lush planted freshwater aquarium with crystal clear water and colorful fish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLnyn0LST4-lPGz1N-pI8bTgBX5qgxnGfFVs94q9skjIVmrhH8l-HHDcpNdaiXR3lfLW3M6HfNQr-Oe-J1mYLHGI1w5xEodPsBkB7mc_lXLHYGvjf28vhA-ZHGk4VODaD7QBnMaY9b5SOVoCeVZaAzvJzVwgYd6k3ANduPBMyxrtL_MAExbFYxtf48nW-uGH1FHxP_c4DqOdrYtxnfcOs9pfJ4QVOlBHkAOC0fIYMIVXp_2R7D3Zzqxc1rOrYAN2oIK1b4r1DeUPa-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#383831]/40 to-transparent"></div>
+</div>
+<div class="flex flex-col md:flex-row items-end md:items-center gap-6 -mt-16 md:-mt-20 px-4 md:px-12 relative z-10">
+<div class="w-32 h-32 md:w-44 md:h-44 rounded-lg border-[6px] border-surface overflow-hidden shadow-xl">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female aquarium hobbyist with soft lighting, natural background, friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIttwK35bPoeJe8ovHsV8RzqPKy1KEJ7H1er50Agq-5ibnhie7GeAGvjbPiNaLjvYArTXEPcPVm1riRZzwqKjTnMoYXafwnBVaAildEP0OQy_xa3OK9FMnzrbDJsbeulIJ2Vp7S_VJpat_5ZeRtSVZXR1TK5H5gLLB9-rd5L2rUxtY2SyNwYEU7a3cPPtetjqIViMpIWsDJXM_2OvuymDgoSu2qZBXqND9XavDtb3_xb_EB13rMftn8VEcmCpDzbvBXTgubLEAyKH5"/>
+</div>
+<div class="flex-1 pb-2 md:pb-4 text-center md:text-left">
+<h1 class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight mb-1">Clara Finwright</h1>
+<p class="text-on-surface-variant font-medium text-lg">Aquascape Artist &amp; Betta Enthusiast</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-3">
+<span class="text-sm font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span> Seattle, WA
+                        </span>
+<span class="text-sm font-semibold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">stars</span> Elite Breeder
+                        </span>
+</div>
+</div>
+<div class="flex gap-3 pb-4">
+<button class="px-8 py-3 rounded-full signature-gradient text-on-primary font-bold shadow-lg active:scale-95 transition-all">Follow</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-high text-primary font-bold active:scale-95 transition-all">Message</button>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Sidebar: About & Stats -->
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container-low p-8 rounded-lg">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">eco</span> Bio
+                    </h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                        Passionate about creating miniature ecosystems. I specialize in high-tech planted tanks and wild-type Betta conservation. Currently managing 4 active displays.
+                    </p>
+<div class="flex gap-2">
+<span class="px-4 py-2 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">FRESHWATER</span>
+<span class="px-4 py-2 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">AQUASCAPING</span>
+</div>
+</div>
+<div class="bg-surface-container-highest p-8 rounded-lg">
+<h3 class="text-xl font-bold mb-6">Active Projects</h3>
+<div class="space-y-6">
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Macro shot of neon tetras swimming in a dense green forest-like planted aquarium" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUwlTUw4eRyEfZ17U2m_Vhl-I-A2zIV71fyZFs2tv71tMqnG9f_EsbTKoOxAFoSUpOhjphFg6iy7wsfQ1JVCbmmRhnkqugL6Gj2Cia98uIZIH4mHU9kA4UGPxs7NZaFrCZOQgHJhEYd7TeQWKaFvNbsQDhPKn5rDOVUbBQvmNnq0fxLiX3DSZ-aqoyOaRt1sLd539Mz31m1nsLjzwP3L-SpXd1KbosUu-5sl069x_rBuTRxiySnRZM_gB1LG0oMbckcQSuNjFhrwuM"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">The Emerald Gorge</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Dry Start Phase • Day 14</p>
+</div>
+</div>
+<div class="flex gap-4 group cursor-pointer">
+<div class="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up of a blue betta fish with flowing fins in a soft focus water background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRYY-c_JVD8-7fy1gaPoY3YgyolhaQ8jBdCf9dcSLc5PyB0DmR6qkuA3t1bLtfDa8UlepnNfba37hUT1XlXdTfUohj75Lm4MiR0v2cWzD8XcQHnfQVCUdJwaJM3JcaINJUsg7nqzgH5S3FPjP4Hbxs66rtHbuCFBeF9vXAl9CGrJSqr_E_ocnGNLn3TfGdLARjbfRplCp0Na40LBxBSAkzuzkWW3Z8VuvpkcC3cuUev65KZaEgKqj_KzD6oFDgpE8RGZOnZAtMEPkS"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Betta Breeding Program</h4>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">F2 Generation • Genetics Lab</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Grid: My Tanks -->
+<section class="lg:col-span-8">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-extrabold tracking-tight">My Tanks</h2>
+<button class="text-primary font-bold flex items-center gap-1 hover:underline">View all <span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Tank Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden tonal-lift group cursor-pointer">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Stunning iwagumi style aquarium with minimalist stone arrangement and bright green carpet plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlHOZ9QuAxLDrqaA1Am5BUcJiTjjEr6d3KAgIt8N7qEXoKb4TrFbWlY1Hd5DM1OuODPCrQNFxpsQquPbBHiuo6Qd32qwf_RTWN9HRN1KLZljcEbqaIy31kuSXqqpffDpgv4dURTeZvMwmbD8pn37aEdPwSG7zii15oyAZy9oj1BWa5ZfAaULhw6IMdY_NC7F0fX-gmcDL-suwWO6j4RXUb9LjDVBtta8Uyr7kYQQrSJEq0TgxUasP_nPgrp5n6pCDCMr6onusTv2l6"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold">Zen Zenith</h3>
+<span class="text-sm font-bold text-secondary">40 Gallon</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-4">A minimalist Iwagumi layout featuring Seiryu stones and a lush carpet of Monte Carlo.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-4">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1 text-xs font-bold text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">favorite</span> 1.2k</span>
+<span class="flex items-center gap-1 text-xs font-bold text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">chat_bubble</span> 84</span>
+</div>
+<span class="text-[10px] font-black uppercase tracking-widest text-primary-dim px-2 py-1 bg-primary-container rounded">MASTERPIECE</span>
+</div>
+</div>
+</div>
+<!-- Tank Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden tonal-lift group cursor-pointer">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Dense jungle-style aquarium with driftwood and tall background plants, moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApvylzoSaeKqXOyaZUFiRhdD0dp-bVtfkizF3CtuHluDvtBTgOmkvu6uS-dXcga_NI28IvdsNn0b7viF8-Q-PLerZ5oACNhmlzFhRYUvkYvqt_sk577o_yNv4KIxg3Jw3qUdKE8ntjZCzWNGbtHod8ahZGF7RWY1JToE6MHUMpnU76cEawvECDoaqlr1t4dqVqGIdun5xK-e37e2pcJrZsSR553xZw4ogyyld6yvjXzXdCrOp6LPasisprkAS3AI_DSHPx9Hlbw0Dd"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold">Midnight Jungle</h3>
+<span class="text-sm font-bold text-secondary">20 Gallon</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-4">A low-tech jungle style scape with Amazon Swords and driftwood branches.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/10 pt-4">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1 text-xs font-bold text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">favorite</span> 890</span>
+<span class="flex items-center gap-1 text-xs font-bold text-on-surface-variant"><span class="material-symbols-outlined text-[16px]">chat_bubble</span> 42</span>
+</div>
+<span class="text-[10px] font-black uppercase tracking-widest text-on-secondary-container px-2 py-1 bg-secondary-container rounded">LOW-TECH</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Asymmetric Bento-style highlight -->
+<div class="mt-10 bg-primary-container/20 rounded-lg p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1 order-2 md:order-1">
+<span class="text-[10px] font-black uppercase tracking-widest text-primary mb-2 block">Featured Highlight</span>
+<h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight text-on-primary-container">"The Floating Island" won Tank of the Month!</h3>
+<p class="text-on-primary-container/80 mb-6">Our community voted Clara's nano-reef as the most creative scape for August 2024. Read the full build guide.</p>
+<button class="px-6 py-2 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors">Read Article</button>
+</div>
+<div class="w-full md:w-64 aspect-square rounded-lg overflow-hidden order-1 md:order-2">
+<img class="w-full h-full object-cover" data-alt="Small nano aquarium with vibrant coral and a single clownfish, brightly lit saltwater setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq4cuk-wA3gW2saT_fEbARvkhnqb4sbpWtZJEVGJRf8KaS0u5vUg_-lHxLPCJsqKklVtFoVcVOKqC-mH5kdJa-vwU7keknBYwZ4Fxm20wFrgcsCap8GKPBCaHd_aj2O24pqTWJ6CjJR2WbNyY-ueptcbg_0zp-O8BrL4A_MpTgPnEu8qUzQtIsU89WiJL4aGIdfGPBwDzCiFgy9WS9pLOEKvQXGZSw_80MC2T5iT3toIpcOf1h3d7THYvbtJiiDs50e9He06bQSImT"/>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f6f4e7] dark:bg-[#383831] w-full py-12 rounded-t-[2rem] mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-10 max-w-7xl mx-auto">
+<p class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-[#65655c] dark:text-[#bbbab0]">© 2024 Aquafolks. Dive deep.</p>
+<div class="flex gap-8 mt-6 md:mt-0 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest">
+<a class="text-[#65655c] hover:text-[#13715e] underline underline-offset-4" href="#">Support</a>
+<a class="text-[#65655c] hover:text-[#13715e] underline underline-offset-4" href="#">Guidelines</a>
+<a class="text-[#65655c] hover:text-[#13715e] underline underline-offset-4" href="#">About Us</a>
+</div>
+</div>
+</footer>
+</body></html>

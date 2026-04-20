@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#65655c",
+                    "on-secondary-container": "#005267",
+                    "secondary-container": "#9ae1ff",
+                    "on-secondary-fixed": "#003d4f",
+                    "secondary-dim": "#006079",
+                    "secondary-fixed": "#9ae1ff",
+                    "surface-container-highest": "#eae9db",
+                    "inverse-surface": "#0e0f09",
+                    "surface-container": "#f6f4e7",
+                    "secondary-fixed-dim": "#8cd3f0",
+                    "on-tertiary-fixed": "#483a00",
+                    "error-dim": "#9f0519",
+                    "on-tertiary-container": "#5e4d00",
+                    "inverse-primary": "#a0f3da",
+                    "on-error": "#ffffff",
+                    "on-surface": "#383831",
+                    "on-primary-container": "#005949",
+                    "tertiary-fixed-dim": "#edcd58",
+                    "inverse-on-surface": "#9e9d94",
+                    "on-error-container": "#570008",
+                    "primary-fixed": "#9aedd4",
+                    "tertiary-container": "#fcdb65",
+                    "error": "#c0262d",
+                    "background": "#fefcf1",
+                    "primary-dim": "#006452",
+                    "on-primary-fixed": "#004437",
+                    "on-tertiary-fixed-variant": "#6a5600",
+                    "outline-variant": "#bbbab0",
+                    "surface-dim": "#e4e3d5",
+                    "error-container": "#fb5151",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#f0eee1",
+                    "primary-fixed-dim": "#8cdec7",
+                    "tertiary-fixed": "#fcdb65",
+                    "surface-variant": "#eae9db",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#13715e",
+                    "tertiary-dim": "#6a5600",
+                    "on-primary-fixed-variant": "#006452",
+                    "tertiary": "#786200",
+                    "primary": "#13715e",
+                    "on-secondary-fixed-variant": "#005c74",
+                    "on-secondary": "#ffffff",
+                    "outline": "#818178",
+                    "surface-bright": "#fefcf1",
+                    "surface-container-low": "#fbfaee",
+                    "secondary": "#196d86",
+                    "surface": "#fefcf1",
+                    "primary-container": "#9aedd4",
+                    "on-background": "#383831"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .signature-gradient {
+        background: linear-gradient(135deg, #13715e 0%, #9aedd4 100%);
+      }
+      .glass-nav {
+        backdrop-filter: blur(20px);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="bg-[#fefcf1]/80 dark:bg-[#383831]/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#13715e] tracking-tight">Aquafolks</span>
+<div class="hidden md:flex items-center gap-6 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Home</a>
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Explore</a>
+<a class="text-[#65655c] hover:text-[#13715e] transition-colors" href="#">Clubs</a>
+<a class="text-[#13715e] border-b-2 border-[#13715e] pb-1" href="#">Marketplace</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="bg-surface-container-high border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 w-64" placeholder="Search marketplace..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<div class="signature-gradient text-white px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>New Post</span>
+</div>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up portrait of a friendly man with a warm smile, soft natural lighting, professional photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4Hp8BdQJnvwvO3GaTS_xAZoVNVAVb4kcjdwoUBUhwpLpSKCwVTxO4FURUp9YBd-N6C7ungYsROyJSOZK3SuU2vbxaomKSTDLrTq3LsJwOQT9EcLPCFAquU_xcfNmsMoZe1F37L8RVkk1TxTvmUTy1ff4uBB8bhv7jQFId5pSKs7_y8PzN6BIKzpBYpw7wB5AkHw-Eti6IDY4ya-h2Vj-04lW9nUSBE3bo1EECMPpb60jX6yifDost7GUSGnP5WoTwoi1f1RKYg-Bq"/>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<!-- Hero Section -->
+<section class="mb-12 relative h-64 rounded-xl overflow-hidden flex items-center px-12 bg-surface-container-low">
+<div class="relative z-10 max-w-lg">
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-4">The Aquatic Exchange</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">Discover rare livestock and premium gear from a community of passionate hobbyists.</p>
+</div>
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img alt="Aquarium background" class="w-full h-full object-cover" data-alt="Lush green planted freshwater aquarium with colorful schooling fish, soft morning light filtering through water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8LNSincvNjB3XAfJ6wMjbX-znIK56GYVEWOHLDzrO8s7gTvR5p5oSV0xK75kmrHW18AFJIg9R4YDXIHTKpGUv-_bG0yqp3XhAmY2YKh7myNQB5rEdkpgmrU_s0pYi3u4j6IA5UU34W0P3bObx1l-L6-zUMjAbdcdI4LxdCo1xZn9YFX-6FtdaTRdBuedvAPpMDUBYEBaqI-Tj8zu_0tTp3c913Cv32g3MJrbEizJ-3CBGkHIkP6vPPnT47EYoiEGT50I0ylQk9acc"/>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Sidebar Filters -->
+<aside class="md:col-span-3 space-y-8">
+<div class="bg-surface-container-high p-6 rounded-lg">
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-6">Categories</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-medium cursor-pointer hover:opacity-80 transition-opacity">Freshwater</span>
+<span class="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-all">Saltwater</span>
+<span class="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-all">Equipment</span>
+<span class="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-all">Plants</span>
+<span class="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-medium cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-all">Corals</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg">
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-6">Price Range</h3>
+<input class="w-full accent-primary mb-4" type="range"/>
+<div class="flex justify-between text-xs font-medium text-on-surface-variant">
+<span>$0</span>
+<span>$1,000+</span>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-lg">
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-4">Seller Type</h3>
+<label class="flex items-center gap-3 mb-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-sm bg-surface-container-lowest border border-outline-variant flex items-center justify-center group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<span class="text-sm text-on-surface">Community Members</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-sm bg-surface-container-lowest border border-outline-variant flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<span class="text-sm text-on-surface">Verified Breeders</span>
+</label>
+</div>
+</aside>
+<!-- Marketplace Grid -->
+<div class="md:col-span-9">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-bold text-on-surface">Featured Listings</h2>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+<span>Sort by: Latest</span>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Item Card 1 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,56,49,0.06)]">
+<div class="relative h-56 overflow-hidden">
+<img alt="Bettas Fish" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Stunning vibrant blue and red Crowntail Betta fish swimming elegantly in clear water, soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClFXeL34_C5Iw2A4KCMTmtMJULhEcI59sULSdxtVsjUJUv0ohnyyCnai81LjQjRzD0Sv6_kZQo56wOd_6OYghgwV1vv8-dw1jtdznJAQgtFALM4wOgDIYmXybcNyUQWxcvcWevRRJ2LCtlgCoqvJQtCvMQho5_qYz6riaIyFJKI1JbdJqDVK7a4V6ozF16kntF9LtCuv-s9jZ1fM4Hyd8crEqioZ8rK2MsBXwo_9knGZTTd2vswgt8cJWjTgIZUKWP_M9pwXwCz3B1"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-bold text-sm">
+                                $45.00
+                            </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-on-surface leading-tight">Rare Midnight Crowntail Betta</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-error transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Healthy 6-month-old male. Bred in-house with premium genetics. Stunning fin extension.</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<img alt="Seller profile" class="w-8 h-8 rounded-full object-cover" data-alt="Headshot of a friendly man with glasses, professional but approachable breeder profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpdU0lVB3X8uhXZE-xjJx3dIf_DojxBu8PVvWERsB2uQnyy0O16D2gtpjYr8uj_W-WwHz_VPJSOJBDmOoy45aVW0YszccHa9GOPYLnsmwYOVDWo8_uDnfpAKMVgmvjbVQ5K9LZPdAZiOLKOhMSnOXBCPCaRkbok2Ex9yg-chjlzreLQLPfD11fH7c1A5l1_0OtmP8o2_UsvM3_LyMzy1F26cN3_oY1J2lSY_kAFPxfFxGNRs-ZUyTgTslYnx1va4LJAix-JgTJdo6I"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Julian R.</span>
+<span class="text-[10px] text-on-surface-variant">Top Rated Seller</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Miami, FL</span>
+</div>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,56,49,0.06)]">
+<div class="relative h-56 overflow-hidden">
+<img alt="Aquarium filter" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close-up of a high-end stainless steel aquarium lily pipe and filter setup, modern industrial aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq7d5QWPuT0UXHjAoG6Zir812V7vaB-v-xX7ctvLfpbHNNaGl_olXnHdAFdYoZno8pGoyTZ-Qhzy1I_8ZFs4FvBeSjeY9RvB3kfIpraI07T_UPuc4SOy-gTKdDwgX98sjr0a2MS7AY0IJ07m7ftTHnnpmkePKlYabIPdSG9SQwgWKmlPA_vwp52BY-7StbWZF1pf2zCrEspPE0iNYtgirblmn-TgCKsn86G22VtyZv_Wlot74YUSnPyRLLnqIze_-IdYBW2MVuOhgM"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-bold text-sm">
+                                $120.00
+                            </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-on-surface leading-tight">Chihiros Stainless Lily Pipes</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-error transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Used for 2 months. Perfect condition, includes original packaging and cleaning brushes.</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<img alt="Seller profile" class="w-8 h-8 rounded-full object-cover" data-alt="Candid portrait of a smiling woman with a creative professional look, natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnpRQj0lnzTAFjnLVPqnR2e-P0s_qf_8qUUqIpmHbtOrDA7NImEahFLJRFPPuiKSqtE05WMYergJTGvNLPBIb-H3ZLtQhOJwfhf_kgwk_qEmqfEIITHpEkjYn8gk8errshluizRC5y0W9IgXnDQh8zhykcCpHgeSvkya-EkVJO4toiJN2_cC-Yd9Uktti498ThA-OZlm8WAT22ytId-f9a1QyhshjSj2FNjp6CKNx7gU3Y8L7FMPLxkHEZLQUswTT43P0ll0NLDopk"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Sarah K.</span>
+<span class="text-[10px] text-on-surface-variant">Verified Member</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Austin, TX</span>
+</div>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,56,49,0.06)]">
+<div class="relative h-56 overflow-hidden">
+<img alt="Hardscape rocks" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Collection of beautiful Seiryu stones for aquascaping arranged on a neutral surface, showcasing natural textures and grays" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmmb3u20y7tT9NAiqHRDaGcM5FKQuBJURwzLshnSyvr3uFhYSsyt2D2mO-Mb5eveOMg5wtlDFfyYdG1oOKlfJJV39VLijQ0UCQEIDCNaFX_vXi05k-mA8sYo4dv11z2_FIz24Olbhmc_69u8SjGm8z7gH_0oKCEiFi5aPwpfHSPqRNbPlprdbgq_DUHW3fqm5BOHQdq82DUL37LUaelRPJHhcE9lgEmWKRVF-wJpK9dHF60VAk3rSMefuIQBA4SNeenh7TukIl4LaE"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-bold text-sm">
+                                $65.00
+                            </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-on-surface leading-tight">Premium Seiryu Stone (15lbs)</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-error transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Hand-picked selection for a 20-gallon scape. High character and deep crevices.</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<img alt="Seller profile" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up of a young man with a friendly expression, outdoor setting with soft bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzncpZbP5wvhJZzElZMom75hD7dMOMP7Dt9RKWl_3U49LjUVUFu0u1eCWSrOk-qnK0GAbOzvvjzs2HHt8ZAxIf7YPxhrL5u5tjr59Ti69GQzOAtLswIPnOaON0m3kyCLEhANkYn39CIdfYVCUth2pFne7SBn3Nvjy-m4chEchqp7ACAszCTky3mkw9dOGzzrOCjIt4JHgYPErivftMS6SLSS93VGhAN13nGB-3yzC3glfjp-h-HPNQyCIr3xl-FODEl0YTBGy7BDzM"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Mark T.</span>
+<span class="text-[10px] text-on-surface-variant">Power Seller</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Portland, OR</span>
+</div>
+</div>
+</div>
+<!-- Item Card 4 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,56,49,0.06)]">
+<div class="relative h-56 overflow-hidden">
+<img alt="Crystal Red Shrimp" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="High-grade Crystal Red Shrimp feeding on a leaf, extreme macro photography showing intricate red and white patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4PTlDsytWQSSWFKjlmcilf6lZfWi-Y5w8Eym2pqswH7vE3z3jdBF56A52qwN83nhb_HvB0nA_EJc83RXMvGPE_j8PhEmayg5lDG3IzvPIy-TObMs5FutAG8e5ATkeaj6nE3nRaExlCdjsArfJYiuc8RKM6DbMMGPXsOz03yU_jOWwSct4nSfsTg9jWwYH6FTNByiRo59DCCj_6GAPSObbeqBDFDbRwy7W61UB4FsQXblXYX4eaxS65mxXbeEGjNBuzOjojGSK3O0S"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-bold text-sm">
+                                $8.00/ea
+                            </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-on-surface leading-tight">SSS Grade Crystal Red Shrimp</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-error transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Home-bred CRS. Strong white coloration and vibrant reds. Colony is very hardy.</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<img alt="Seller profile" class="w-8 h-8 rounded-full object-cover" data-alt="Artistic portrait of a woman with a confident smile, warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pC3ukqSGcsGfsDxpXKRHYAQ5gT7DxistHfqSjnCkhakcNzthYClnRdbPt2v-yoiIXaxYT2G-6nuS7em-L_33lSuv7jX1ubiJKzuNjH1ldT-RZl4nm8iF2alf7EPHjICPi0Fr-G-j5bmzBFSPlaw-3enxhjq3RnkcQpUOg2gGTgw6j_WbVqQqdos5NilOJh7Y-uSC733zU49wZxRLNgGF76Adk7KLGKQzOozhtb4mXoOVLydl_UWh5X-ZTP64Pt7dx146OcBBQ_vv"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Lin W.</span>
+<span class="text-[10px] text-on-surface-variant">Shrimp Specialist</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">San Diego, CA</span>
+</div>
+</div>
+</div>
+<!-- Item Card 5 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,56,49,0.06)]">
+<div class="relative h-56 overflow-hidden">
+<img alt="Neon Tetra" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="School of Neon Tetras swimming through aquatic plants, bright blue and red stripes glowing in soft tank lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvVz72odqqpY3nsOW86zKLFSh7-gmIij5B9l8a_dWIts6BEZLJo3FuCejZCLXcnS-w_HtW63Dh3fcR0QNRPF-cio6TFcW4-TixCRaaPg_nL7lAg1ii_l0vlzjYdhVJUJGZAB27fIluO9N7z9CpdyVoUzz7n3pTaG3iIotku8CAu8beg2gKW4KWpWSV0EJFz8UDehSATGwPCLhkrHo4FUVk_nDzavLHHEAUO4qbwv7356Rp1lp3vdw5wfX6bt3cU0KsgFLhcS2ZkY9G"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-bold text-sm">
+                                $25.00/10pk
+                            </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-on-surface leading-tight">School of Neon Tetras (L)</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-error transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Active and quarantined for 4 weeks. Perfect addition to any community tank.</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<img alt="Seller profile" class="w-8 h-8 rounded-full object-cover" data-alt="Professional headshot of a friendly man, bright clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwKkOTOIP5BxQRkMKJqSVcD000U-BgcUCxm_TgDR9LRXUzcWPBB34jap1yqbZ4H3ST_orM9NDML6OpbJf06PPPM-LMH5gMtnJAgI9KSrIiOvZPsZhTTVAeq4Jj5aH8mJ4vJgNK9S9rC9WzOJo38jc7Sjot1Hk88EpICUyrn3694b48sSpiMWVT4lA9i-vMH3LJXMC5RPT6CD0j4S58UcaHmEXJvEiUspOaq8EMuwIG51wRyS9oqziAPUOpkJbCIYGHFdVHzvliL24W"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Dave S.</span>
+<span class="text-[10px] text-on-surface-variant">Local Hobbyist</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Denver, CO</span>
+</div>
+</div>
+</div>
+<!-- Item Card 6 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(56,56,49,0.06)]">
+<div class="relative h-56 overflow-hidden">
+<img alt="Rimless Tank" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist high-clarity rimless glass aquarium on a sleek wood stand, interior is empty showing clear glass quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj19i8Z4XhnjRqvaDeq58fI5cm1RVwKIvI4OU9a9REJi_qikgaDZGq0dGsaHIIpEAcXfY7kzwuTLvPJidFklgIQwOPEmQpps9ltjXh1pDBTjd1Z5TSz1lSWEObcfEmaO5B6XS29sy1-6nJhjVwA1H55e3GjsoFdzveUkNhfy6vFvhCEsyopePbnpS7GViPHILSHK8qmggCBb2_c9hrM5t_EfnZrTVxc1SOBqATK5BtpW8w4nRgvxgNXON0_wprJsiuNpFR-n5sar-y"/>
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-bold text-sm">
+                                $210.00
+                            </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-on-surface leading-tight">UNS 60U Rimless Aquarium</h3>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-error transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-2 mb-6">Like new condition. Ultra-high clarity glass. 20-gallon capacity. Pick-up only.</p>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<img alt="Seller profile" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up of a smiling man in casual attire, soft natural window lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkuZhTF__rnd8gKdB3rHsbs6qCdMmeybAcLHFmARyQpx0C_YvqChQbtKvxjtVjAPd_mbc0b7SHk8lYtA5n4N2aeFUtNeC_-KtWlJG1UbWyXjj7dpQo7YBOimFh_Wt4i38y8KD1XWdhsFYiVZWZLDoZnxgpXg_6uBEN5CH88F7nR97QCVwV8J04ml8617yToioe2Z351bn5aDrsqbfNCIGPFfTiw4UhMb2jkVQuYmNGESRg3rQxVK731V0qTSu7xOpOn5olr60kRCcL"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Ethan M.</span>
+<span class="text-[10px] text-on-surface-variant">Member since 2021</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Seattle, WA</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f6f4e7] dark:bg-[#383831] w-full py-12 rounded-t-[2rem] mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-10 max-w-7xl mx-auto">
+<div class="mb-6 md:mb-0">
+<p class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-[#65655c] dark:text-[#bbbab0]">© 2024 Aquafolks. Dive deep.</p>
+</div>
+<div class="flex gap-8 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-[#65655c] dark:text-[#bbbab0]">
+<a class="hover:text-[#13715e] underline underline-offset-4 transition-colors" href="#">Support</a>
+<a class="hover:text-[#13715e] underline underline-offset-4 transition-colors" href="#">Guidelines</a>
+<a class="hover:text-[#13715e] underline underline-offset-4 transition-colors" href="#">About Us</a>
+</div>
+</div>
+</footer>
+<!-- FAB for mobile context -->
+<div class="fixed bottom-8 right-8 md:hidden signature-gradient text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</div>
+</body></html>

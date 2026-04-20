@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aquafolks | User Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#196d86",
+                        "tertiary-dim": "#6a5600",
+                        "primary-dim": "#006452",
+                        "error-dim": "#9f0519",
+                        "tertiary": "#786200",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#9aedd4",
+                        "on-primary-fixed-variant": "#006452",
+                        "on-surface-variant": "#65655c",
+                        "surface-variant": "#eae9db",
+                        "on-primary-fixed": "#004437",
+                        "secondary-container": "#9ae1ff",
+                        "background": "#fefcf1",
+                        "primary": "#13715e",
+                        "on-tertiary-fixed": "#483a00",
+                        "surface-container-high": "#f0eee1",
+                        "surface-dim": "#e4e3d5",
+                        "surface-container-low": "#fbfaee",
+                        "surface-bright": "#fefcf1",
+                        "on-secondary-fixed": "#003d4f",
+                        "secondary-fixed": "#9ae1ff",
+                        "on-secondary-container": "#005267",
+                        "outline-variant": "#bbbab0",
+                        "inverse-primary": "#a0f3da",
+                        "secondary-fixed-dim": "#8cd3f0",
+                        "error": "#c0262d",
+                        "tertiary-fixed-dim": "#edcd58",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f6f4e7",
+                        "inverse-surface": "#0e0f09",
+                        "secondary-dim": "#006079",
+                        "on-surface": "#383831",
+                        "on-background": "#383831",
+                        "surface-tint": "#13715e",
+                        "on-tertiary-container": "#5e4d00",
+                        "on-error-container": "#570008",
+                        "outline": "#818178",
+                        "tertiary-fixed": "#fcdb65",
+                        "on-secondary-fixed-variant": "#005c74",
+                        "primary-fixed-dim": "#8cdec7",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#fcdb65",
+                        "primary-fixed": "#9aedd4",
+                        "on-primary-container": "#005949",
+                        "surface-container-highest": "#eae9db",
+                        "inverse-on-surface": "#9e9d94",
+                        "on-tertiary-fixed-variant": "#6a5600",
+                        "error-container": "#fb5151",
+                        "surface": "#fefcf1",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fefcf1; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .signature-gradient { background: linear-gradient(135deg, #13715e 0%, #9aedd4 100%); }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-[#fefcf1]/80 dark:bg-stone-900/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto font-['Plus_Jakarta_Sans'] text-base font-medium">
+<div class="text-2xl font-bold tracking-tight text-[#383831] dark:text-[#fefcf1] cursor-pointer active:scale-95 transition-transform">
+                Aquafolks
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#65655c] dark:text-[#eae9db] hover:text-[#13715e] transition-colors duration-300" href="#">Marketplace</a>
+<a class="text-[#65655c] dark:text-[#eae9db] hover:text-[#13715e] transition-colors duration-300" href="#">Projects</a>
+<a class="text-[#65655c] dark:text-[#eae9db] hover:text-[#13715e] transition-colors duration-300" href="#">Tanks</a>
+<a class="text-[#13715e] dark:text-[#76C8B1] border-b-2 border-[#13715e] pb-1 cursor-pointer active:scale-95 transition-transform" href="#">Profiles</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#13715e] dark:text-[#76C8B1] cursor-pointer active:scale-95 transition-transform">notifications</button>
+<button class="material-symbols-outlined text-[#13715e] dark:text-[#76C8B1] cursor-pointer active:scale-95 transition-transform" style="font-variation-settings: 'FILL' 1;">account_circle</button>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-20 px-6 max-w-6xl mx-auto min-h-screen">
+<div class="mb-12">
+<h1 class="text-5xl font-extrabold tracking-tight text-on-surface mb-2">Settings</h1>
+<p class="text-on-surface-variant text-lg">Curate your sanctuary and manage your aquatic identity.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Sidebar Navigation -->
+<aside class="lg:col-span-3">
+<nav class="flex flex-col gap-2 sticky top-32">
+<button class="flex items-center gap-4 px-6 py-4 rounded-full bg-primary-container text-on-primary-container font-semibold transition-all duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+                        Profile
+                    </button>
+<button class="flex items-center gap-4 px-6 py-4 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all duration-300">
+<span class="material-symbols-outlined">manage_accounts</span>
+                        Account
+                    </button>
+<button class="flex items-center gap-4 px-6 py-4 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all duration-300">
+<span class="material-symbols-outlined">notifications_active</span>
+                        Notifications
+                    </button>
+<button class="flex items-center gap-4 px-6 py-4 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all duration-300">
+<span class="material-symbols-outlined">shield_person</span>
+                        Privacy
+                    </button>
+</nav>
+</aside>
+<!-- Content Area -->
+<div class="lg:col-span-9 space-y-10">
+<!-- Profile Section -->
+<section class="bg-surface-container-low rounded-lg p-10 shadow-sm transition-all duration-300" id="profile">
+<h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+                        Profile Details
+                    </h2>
+<div class="flex flex-col md:flex-row items-start gap-10">
+<div class="relative group">
+<div class="w-32 h-32 rounded-xl overflow-hidden ring-4 ring-primary-container">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a serene young man with soft lighting and natural background for professional profile appearance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsMI8PsddWq_Uj4XTXoB4SbW0KgXg9uqOtlaH5I37tNH6TOmsQrMIwGe52z6neHGGMLNXhK4RXmrpxdZif0jgoHEMO3YMQaumXtXbbOEG6M43Mh2DduVdacNcKHQ7H9uHtXCuFUWcQNS0bNFtbD4m4lpx0FXDxAjGQ2EZA0nXcKDdDuwYPDN8Xq6RH6me2iuDieHwLef1OoBN0v9crUPs2IMUDT6vRu7ksz0kPzlQyWBv9C6F6VTepR_fcwKnZWP8MyuRYvEo64SVD"/>
+</div>
+<button class="absolute -bottom-2 -right-2 bg-primary text-on-primary p-2 rounded-full shadow-lg transition-transform active:scale-90">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 w-full space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Display Name</label>
+<input class="w-full px-5 py-3 rounded-md border-none bg-surface-container-high focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all" type="text" value="Julian Aquascaper"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Hobby Level</label>
+<select class="w-full px-5 py-3 rounded-md border-none bg-surface-container-high focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all">
+<option>Beginner</option>
+<option selected="">Advanced Hobbyist</option>
+<option>Professional</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant ml-1">Bio</label>
+<textarea class="w-full px-5 py-3 rounded-md border-none bg-surface-container-high focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all" rows="4">Curating high-tech Iwagumi setups and specialized shrimp breeding since 2018. Looking for rare Moss varieties and Bucephalandra.</textarea>
+</div>
+</div>
+</div>
+</section>
+<!-- Account & Security Section -->
+<section class="bg-surface-container rounded-lg p-10" id="account">
+<h2 class="text-2xl font-bold mb-8">Account &amp; Security</h2>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-6 bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-container p-3 rounded-full">alternate_email</span>
+<div>
+<p class="font-bold text-on-surface">Email Address</p>
+<p class="text-on-surface-variant text-sm">julian@aquafolks.sanctuary</p>
+</div>
+</div>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-primary font-semibold hover:bg-surface-container-highest transition-all">Update</button>
+</div>
+<div class="flex items-center justify-between p-6 bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-container p-3 rounded-full">lock</span>
+<div>
+<p class="font-bold text-on-surface">Password</p>
+<p class="text-on-surface-variant text-sm">Last changed 4 months ago</p>
+</div>
+</div>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-primary font-semibold hover:bg-surface-container-highest transition-all">Change</button>
+</div>
+</div>
+</section>
+<!-- Notifications & Privacy Layout (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Notifications -->
+<div class="bg-surface-container-low p-10 rounded-lg">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">notifications</span>
+                            Notifications
+                        </h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">Marketplace Alerts</p>
+<p class="text-xs text-on-surface-variant">When new livestock is listed</p>
+</div>
+<div class="w-12 h-6 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-4 h-4 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">Community Replies</p>
+<p class="text-xs text-on-surface-variant">Direct messages and comments</p>
+</div>
+<div class="w-12 h-6 bg-surface-container-highest rounded-full relative cursor-pointer">
+<div class="absolute left-1 top-1 w-4 h-4 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Privacy -->
+<div class="bg-secondary-container/20 p-10 rounded-lg">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">visibility_off</span>
+                            Privacy
+                        </h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">Public Profile</p>
+<p class="text-xs text-on-surface-variant">Allow others to see your tanks</p>
+</div>
+<div class="w-12 h-6 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-4 h-4 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-medium">Data Syncing</p>
+<p class="text-xs text-on-surface-variant">Cloud backup for tank stats</p>
+</div>
+<div class="w-12 h-6 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-4 h-4 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex items-center justify-end gap-4 mt-12 pt-8">
+<button class="px-8 py-3 rounded-full font-semibold text-on-surface-variant hover:bg-surface-container-high transition-all">Cancel Changes</button>
+<button class="px-10 py-3 rounded-full signature-gradient text-on-primary font-bold shadow-xl shadow-primary/20 active:scale-95 transition-all">Save Changes</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-[2rem] mt-12 bg-[#eae9db] dark:bg-stone-950">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full max-w-7xl mx-auto">
+<div class="mb-6 md:mb-0">
+<span class="font-bold text-[#383831] dark:text-[#fefcf1] text-xl">Aquafolks Sanctuary</span>
+<p class="font-['Plus_Jakarta_Sans'] text-sm text-[#65655c] dark:text-stone-400 mt-1">© 2024 Aquafolks Sanctuary. Breathe deep.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-[#65655c] dark:text-stone-400 hover:underline decoration-[#9aedd4] decoration-2 underline-offset-4 transition-all duration-200" href="#">Privacy</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-[#65655c] dark:text-stone-400 hover:underline decoration-[#9aedd4] decoration-2 underline-offset-4 transition-all duration-200" href="#">Terms</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-[#65655c] dark:text-stone-400 hover:underline decoration-[#9aedd4] decoration-2 underline-offset-4 transition-all duration-200" href="#">Community Guidelines</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-[#65655c] dark:text-stone-400 hover:underline decoration-[#9aedd4] decoration-2 underline-offset-4 transition-all duration-200" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>
