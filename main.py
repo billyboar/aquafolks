@@ -10,7 +10,6 @@ args = parser.parse_args()
 current_idea = args.idea
 
 # --- 2. CONFIGURATION & LLM (Claude 3.5 Sonnet via GitHub) ---
-os.environ["GITHUB_TOKEN"] = "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"
 
 claude_sonnet = LLM(
     model="github/claude-4-5-opus",
