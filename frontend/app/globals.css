@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* The Submerged Sanctuary Design System */
+  /* Surface colors - warm cream tones */
+  --surface: 45 30% 98%; /* #fefcf1 */
+  --surface-container-lowest: 0 0% 100%; /* #ffffff */
+  --surface-container-low: 42 25% 97%; /* #fbfaee */
+  --surface-container: 42 20% 95%; /* #f6f4e7 */
+  --surface-container-high: 42 15% 93%; /* #f1efdf */
+  --surface-container-highest: 42 10% 91%; /* #eae9db */
+  
+  /* Primary - Aqua Green */
+  --primary: 169 72% 26%; /* #13715e */
+  --primary-container: 169 72% 76%; /* #9aedd4 */
+  --on-primary: 0 0% 100%; /* #ffffff */
+  
+  /* Secondary - Sky Blue */
+  --secondary: 192 100% 80%; /* #9ae1ff */
+  --secondary-container: 192 100% 95%; /* #e5f8ff */
+  
+  /* Text colors */
+  --on-surface: 42 11% 21%; /* #383831 */
+  --on-surface-variant: 42 8% 38%; /* #65655c */
+  
+  /* Outline */
+  --outline-variant: 42 5% 72%; /* #bbbab0 */
+  
+  /* Spacing - organic feel */
+  --radius-sm: 0.5rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --radius-full: 9999px;
+}
+
+@theme inline {
+  --color-surface: hsl(var(--surface));
+  --color-surface-container: hsl(var(--surface-container));
+  --color-surface-container-low: hsl(var(--surface-container-low));
+  --color-surface-container-lowest: hsl(var(--surface-container-lowest));
+  --color-surface-container-high: hsl(var(--surface-container-high));
+  --color-surface-container-highest: hsl(var(--surface-container-highest));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-container: hsl(var(--primary-container));
+  --color-on-primary: hsl(var(--on-primary));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-container: hsl(var(--secondary-container));
+  
+  --color-on-surface: hsl(var(--on-surface));
+  --color-on-surface-variant: hsl(var(--on-surface-variant));
+  
+  --color-outline-variant: hsl(var(--outline-variant));
+}
+
+* {
+  border-color: hsl(var(--outline-variant) / 0.15);
+}
+
+body {
+  background: hsl(var(--surface));
+  color: hsl(var(--on-surface));
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: hsl(var(--on-surface));
+  font-weight: 600;
+}

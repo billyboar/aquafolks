@@ -1,0 +1,447 @@
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { Notification, NotificationPreferences } from '../types';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+// Helper to handle 401 errors
+function handle401(status: number) {
+  if (status === 401) {
+    window.dispatchEvent(new CustomEvent('auth:unauthorized'));
+  }
+}
+
+// Fetch notifications with pagination
+export function useNotifications(page = 1, limit = 20) {
+  return useQuery({
+    queryKey: ['notifications', page, limit],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/notifications?page=${page}&limit=${limit}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch notifications');
+      const data = await res.json();
+      return data.data || { notifications: [], total: 0, page, limit };
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token'),
+    retry: 1,
+  });
+}
+
+// Fetch unread notification count
+export function useUnreadCount() {
+  return useQuery({
+    queryKey: ['notifications', 'unread-count'],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(`${API_URL}/api/v1/notifications/unread-count`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch unread count');
+      const data = await res.json();
+      return data.data?.count || 0;
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token'),
+    refetchInterval: 30000, // Refetch every 30 seconds
+    retry: 1,
+  });
+}
+
+// Mark notification as read
+export function useMarkAsRead() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (notificationId: number) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/notifications/${notificationId}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ is_read: true }),
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to mark notification as read');
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notifications'] });
+      queryClient.invalidateQueries({ queryKey: ['notifications', 'unread-count'] });
+    },
+  });
+}
+
+// Mark all notifications as read
+export function useMarkAllAsRead() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/notifications/read-all`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to mark all as read');
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notifications'] });
+      queryClient.invalidateQueries({ queryKey: ['notifications', 'unread-count'] });
+    },
+  });
+}
+
+// Delete notification
+export function useDeleteNotification() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (notificationId: number) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/notifications/${notificationId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to delete notification');
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notifications'] });
+      queryClient.invalidateQueries({ queryKey: ['notifications', 'unread-count'] });
+    },
+  });
+}
+
+// Fetch notification preferences
+export function useNotificationPreferences() {
+  return useQuery({
+    queryKey: ['notification-preferences'],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/settings/notification-preferences`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch notification preferences');
+      const data = await res.json();
+      return data.data || {
+        email_notifications: true,
+        push_notifications: true,
+        notify_on_comment: true,
+        notify_on_like: true,
+        notify_on_follow: true,
+        notify_on_message: true,
+        notify_on_project_update: true,
+        notify_on_marketplace: true,
+      };
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token'),
+  });
+}
+
+// Update notification preferences
+export function useUpdateNotificationPreferences() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (preferences: Partial<NotificationPreferences>) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/settings/notification-preferences`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(preferences),
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to update notification preferences');
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notification-preferences'] });
+    },
+  });
+}
+
+// Subscribe to project updates
+export function useSubscribeToProject() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (projectId: string) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/subscriptions/projects/${projectId}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error('Subscription error:', res.status, errorData);
+        throw new Error(errorData.error || 'Failed to subscribe to project');
+      }
+      return res.json();
+    },
+    onSuccess: (_, projectId) => {
+      queryClient.invalidateQueries({ queryKey: ['project-subscription', projectId] });
+    },
+  });
+}
+
+// Unsubscribe from project updates
+export function useUnsubscribeFromProject() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (projectId: string) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/subscriptions/projects/${projectId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to unsubscribe from project');
+      return res.json();
+    },
+    onSuccess: (_, projectId) => {
+      queryClient.invalidateQueries({ queryKey: ['project-subscription', projectId] });
+    },
+  });
+}
+
+// Check project subscription status
+export function useProjectSubscriptionStatus(projectId: string) {
+  return useQuery({
+    queryKey: ['project-subscription', projectId],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/subscriptions/projects/${projectId}/status`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch subscription status');
+      const data = await res.json();
+      return data.is_subscribed || false;
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token') && !!projectId,
+  });
+}
+
+// Follow user
+export function useFollowUser() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (userId: number) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/users/${userId}/follow`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to follow user');
+      return res.json();
+    },
+    onSuccess: (_, userId) => {
+      queryClient.invalidateQueries({ queryKey: ['follow-status', userId] });
+      queryClient.invalidateQueries({ queryKey: ['user-followers', userId] });
+    },
+  });
+}
+
+// Unfollow user
+export function useUnfollowUser() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (userId: number) => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/users/${userId}/follow`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to unfollow user');
+      return res.json();
+    },
+    onSuccess: (_, userId) => {
+      queryClient.invalidateQueries({ queryKey: ['follow-status', userId] });
+      queryClient.invalidateQueries({ queryKey: ['user-followers', userId] });
+    },
+  });
+}
+
+// Check follow status
+export function useFollowStatus(userId: number) {
+  return useQuery({
+    queryKey: ['follow-status', userId],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/users/${userId}/follow-status`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch follow status');
+      const data = await res.json();
+      return data.data?.is_following || false;
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token') && !!userId,
+  });
+}
+
+// Get user followers
+export function useUserFollowers(userId: number) {
+  return useQuery({
+    queryKey: ['user-followers', userId],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/users/${userId}/followers`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch followers');
+      const data = await res.json();
+      return data.data?.followers || [];
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token') && !!userId,
+  });
+}
+
+// Get user following
+export function useUserFollowing(userId: number) {
+  return useQuery({
+    queryKey: ['user-following', userId],
+    queryFn: async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) throw new Error('Not authenticated');
+
+      const res = await fetch(
+        `${API_URL}/api/v1/users/${userId}/following`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      handle401(res.status);
+      if (!res.ok) throw new Error('Failed to fetch following');
+      const data = await res.json();
+      return data.data?.following || [];
+    },
+    enabled: typeof window !== 'undefined' && !!localStorage.getItem('access_token') && !!userId,
+  });
+}
