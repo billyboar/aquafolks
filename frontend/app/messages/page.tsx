@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+
 export default function MessagesPage() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
@@ -33,7 +35,7 @@ export default function MessagesPage() {
   const { data: conversations, isLoading, error } = useQuery<Conversation[]>({
     queryKey: ['conversations'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:3000/api/v1/messages/conversations', {
+      const res = await fetch(`${API_URL}/api/v1/messages/conversations`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +59,7 @@ export default function MessagesPage() {
   const { data: unreadCount } = useQuery<{ count: number }>({
     queryKey: ['unread-count'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:3000/api/v1/messages/unread-count', {
+      const res = await fetch(`${API_URL}/api/v1/messages/unread-count`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -108,7 +110,7 @@ export default function MessagesPage() {
     <>
       <Header />
       <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-5xl mx-auto px-4">
           <div className="bg-white rounded-lg shadow">
             <div className="border-b border-gray-200 px-6 py-4">
               <div className="flex items-center justify-between">

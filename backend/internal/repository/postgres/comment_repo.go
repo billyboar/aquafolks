@@ -17,8 +17,8 @@ func NewCommentRepository(db *pgxpool.Pool) *CommentRepository {
 	return &CommentRepository{db: db}
 }
 
-// Create creates a new comment
-func (r *CommentRepository) Create(ctx context.Context, userID, commentableType, commentableID, content string) (*domain.Comment, error) {
+// Create creates a new comment with optional image URLs
+func (r *CommentRepository) Create(ctx context.Context, userID, commentableType, commentableID, content string, imageURLs []string) (*domain.Comment, error) {
 	comment := &domain.Comment{}
 
 	query := `
@@ -36,9 +36,19 @@ func (r *CommentRepository) Create(ctx context.Context, userID, commentableType,
 		&comment.CreatedAt,
 		&comment.UpdatedAt,
 	)
-
 	if err != nil {
 		return nil, fmt.Errorf("failed to create comment: %w", err)
+	}
+
+	// Insert images if provided
+	for i, url := range imageURLs {
+		imgQuery := `INSERT INTO comment_images (comment_id, image_url, display_order) VALUES ($1, $2, $3) RETURNING id, comment_id, image_url, display_order, created_at`
+		img := domain.CommentImage{}
+		err := r.db.QueryRow(ctx, imgQuery, comment.ID, url, i).Scan(&img.ID, &img.CommentID, &img.ImageURL, &img.DisplayOrder, &img.CreatedAt)
+		if err != nil {
+			return nil, fmt.Errorf("failed to insert comment image: %w", err)
+		}
+		comment.Images = append(comment.Images, img)
 	}
 
 	return comment, nil
@@ -61,7 +71,7 @@ func (r *CommentRepository) GetByCommentable(ctx context.Context, commentableTyp
 	}
 	defer rows.Close()
 
-	var comments []domain.Comment
+	comments := make([]domain.Comment, 0)
 	for rows.Next() {
 		var comment domain.Comment
 		var user domain.User
@@ -84,7 +94,39 @@ func (r *CommentRepository) GetByCommentable(ctx context.Context, commentableTyp
 		}
 
 		comment.User = &user
+		comment.Images = make([]domain.CommentImage, 0)
 		comments = append(comments, comment)
+	}
+	rows.Close()
+
+	// Fetch images for all comments
+	if len(comments) > 0 {
+		// Build list of comment IDs
+		commentIDs := make([]string, len(comments))
+		commentIndex := make(map[string]int, len(comments))
+		for i, c := range comments {
+			commentIDs[i] = c.ID
+			commentIndex[c.ID] = i
+		}
+
+		imgQuery := `
+			SELECT id, comment_id, image_url, display_order, created_at
+			FROM comment_images
+			WHERE comment_id = ANY($1::uuid[])
+			ORDER BY comment_id, display_order
+		`
+		imgRows, err := r.db.Query(ctx, imgQuery, commentIDs)
+		if err == nil {
+			defer imgRows.Close()
+			for imgRows.Next() {
+				var img domain.CommentImage
+				if err := imgRows.Scan(&img.ID, &img.CommentID, &img.ImageURL, &img.DisplayOrder, &img.CreatedAt); err == nil {
+					if idx, ok := commentIndex[img.CommentID]; ok {
+						comments[idx].Images = append(comments[idx].Images, img)
+					}
+				}
+			}
+		}
 	}
 
 	return comments, nil

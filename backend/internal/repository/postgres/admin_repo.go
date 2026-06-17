@@ -140,7 +140,7 @@ func (r *AdminRepository) ListReports(ctx context.Context, status *domain.Report
 	}
 	defer rows.Close()
 
-	var reports []*domain.Report
+	reports := make([]*domain.Report, 0)
 	for rows.Next() {
 		var report domain.Report
 		var reporterUsername, reporterAvatar *string
@@ -184,8 +184,8 @@ func (r *AdminRepository) ListReports(ctx context.Context, status *domain.Report
 func (r *AdminRepository) UpdateReport(ctx context.Context, id uuid.UUID, moderatorID uuid.UUID, update *domain.UpdateReportInput) error {
 	query := `
 		UPDATE reports
-		SET status = $1, moderator_note = $2, action_taken = $3, 
-		    moderator_id = $4, resolved_at = CASE WHEN $1 IN ('resolved', 'dismissed') THEN NOW() ELSE resolved_at END
+		SET status = $1::varchar, moderator_note = $2, action_taken = $3, 
+		    moderator_id = $4, resolved_at = CASE WHEN $1::varchar IN ('resolved', 'dismissed') THEN NOW() ELSE resolved_at END
 		WHERE id = $5
 	`
 
@@ -321,7 +321,7 @@ func (r *AdminRepository) ListModerationLogs(ctx context.Context, limit, offset 
 	}
 	defer rows.Close()
 
-	var logs []*domain.ModerationLog
+	logs := make([]*domain.ModerationLog, 0)
 	for rows.Next() {
 		var log domain.ModerationLog
 		var detailsJSON []byte
@@ -443,7 +443,7 @@ func (r *AdminRepository) ListUsers(ctx context.Context, limit, offset int, filt
 	}
 	defer rows.Close()
 
-	var users []*domain.User
+	users := make([]*domain.User, 0)
 	for rows.Next() {
 		var user domain.User
 		var locationCity *string

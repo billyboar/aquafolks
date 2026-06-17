@@ -314,7 +314,7 @@ func (r *UserRepository) List(ctx context.Context, limit, offset int) ([]*domain
 	}
 	defer rows.Close()
 
-	var users []*domain.User
+	users := make([]*domain.User, 0)
 	for rows.Next() {
 		var user domain.User
 		err := rows.Scan(
@@ -376,7 +376,7 @@ func (r *UserRepository) FindNearby(ctx context.Context, lat, lng float64, radiu
 	}
 	defer rows.Close()
 
-	var users []*domain.User
+	users := make([]*domain.User, 0)
 	for rows.Next() {
 		var user domain.User
 		var distanceKm float64

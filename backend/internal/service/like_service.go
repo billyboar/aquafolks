@@ -21,7 +21,7 @@ func NewLikeService(likeRepo *postgres.LikeRepository) *LikeService {
 // ToggleLike toggles a like (creates if doesn't exist, deletes if exists)
 func (s *LikeService) ToggleLike(ctx context.Context, userID, likeableType, likeableID string) (bool, error) {
 	// Validate likeable type
-	validTypes := map[string]bool{"tank": true, "listing": true, "project": true}
+	validTypes := map[string]bool{"tank": true, "listing": true, "project": true, "project_update": true}
 	if !validTypes[likeableType] {
 		return false, fmt.Errorf("invalid likeable type: %s", likeableType)
 	}

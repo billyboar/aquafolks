@@ -25,7 +25,7 @@ const projectStatuses: { value: ProjectStatus; label: string; description: strin
 ];
 
 export default function EditProjectPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const params = useParams();
   const projectId = params?.id as string;
@@ -110,6 +110,7 @@ export default function EditProjectPage() {
     }
   };
 
+  if (authLoading) return null;
   if (!user) {
     router.push('/login');
     return null;
@@ -119,7 +120,7 @@ export default function EditProjectPage() {
     return (
       <>
         <Header />
-        <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center py-12">
             <p className="text-[hsl(var(--on-surface-variant))]">Loading project...</p>
           </div>
@@ -132,7 +133,7 @@ export default function EditProjectPage() {
     return (
       <>
         <Header />
-        <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="bg-[hsl(var(--error-container))] text-[hsl(var(--on-error-container))] px-4 py-3 rounded-lg text-sm">
             {error || 'You are not authorized to edit this project'}
           </div>
@@ -144,7 +145,7 @@ export default function EditProjectPage() {
   return (
     <>
       <Header />
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Edit Project</h1>
           <p className="text-[hsl(var(--on-surface-variant))]">

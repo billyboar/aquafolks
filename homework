@@ -1,0 +1,10 @@
+okay, I'm going to bed and I trust you with everything, and I approve everything. Leave the summary of what you done in a file called homework_result.md
+Things to do: 
+- Make sure every current features works
+- Make sure forgot password works
+- Add social logins (google, apple, facebook)
+- Find seed data and store them in a file: Find all aquarium fish names and information and populate the database, also find all aquarium plant names and information and keep it in database. Both fish and plant data should be also stored in json file.
+- Fix inconsistent notification bell icon on navbar, it doesn't look in same line as the other links in navbar and kind of looks not aligned.  
+- check admin features and make sure they work and leave the urls that I can check later.
+- Make sure all projects and tanks, user profilesm, marketplace entries are SEO friendly. 
+

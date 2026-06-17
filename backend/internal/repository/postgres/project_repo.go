@@ -33,23 +33,28 @@ func (r *ProjectRepository) Create(ctx context.Context, project *domain.Project)
 
 func (r *ProjectRepository) FindByID(ctx context.Context, id uuid.UUID) (*domain.Project, error) {
 	query := `
-		SELECT id, user_id, tank_id, title, description, project_type, status, 
-		       start_date, end_date, cover_photo_url, is_public, created_at, updated_at
-		FROM projects
-		WHERE id = $1
+		SELECT p.id, p.user_id, p.tank_id, p.title, p.description, p.project_type, p.status,
+		       p.start_date, p.end_date, p.cover_photo_url, p.is_public, p.created_at, p.updated_at,
+		       u.id, u.username, u.display_name, u.avatar_url
+		FROM projects p
+		JOIN users u ON p.user_id = u.id
+		WHERE p.id = $1
 	`
 
 	project := &domain.Project{}
+	user := &domain.User{}
 	err := r.db.QueryRow(ctx, query, id).Scan(
 		&project.ID, &project.UserID, &project.TankID, &project.Title, &project.Description,
 		&project.ProjectType, &project.Status, &project.StartDate, &project.EndDate,
 		&project.CoverPhotoURL, &project.IsPublic, &project.CreatedAt, &project.UpdatedAt,
+		&user.ID, &user.Username, &user.DisplayName, &user.AvatarURL,
 	)
 
 	if err != nil {
 		return nil, err
 	}
 
+	project.User = user
 	return project, nil
 }
 

@@ -66,7 +66,7 @@ export default function SettingsPage() {
     return (
       <>
         <Header />
-        <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="animate-pulse space-y-4">
             <div className="h-8 bg-[hsl(var(--surface-container))] rounded w-1/4" />
             <div className="h-64 bg-[hsl(var(--surface-container))] rounded" />
@@ -79,7 +79,7 @@ export default function SettingsPage() {
   return (
     <>
       <Header />
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-[hsl(var(--on-surface))] mb-2">Settings</h1>

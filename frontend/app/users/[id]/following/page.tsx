@@ -45,7 +45,7 @@ export default function FollowingPage() {
     return (
       <>
         <Header />
-        <div className="max-w-2xl mx-auto px-4 py-8">
+        <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="bg-red-50 text-red-800 px-4 py-3 rounded-lg text-sm mb-6">
             Failed to load following
           </div>
@@ -67,7 +67,7 @@ export default function FollowingPage() {
   return (
     <>
       <Header />
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-6">
           <button

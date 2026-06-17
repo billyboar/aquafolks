@@ -81,7 +81,7 @@ func (r *FollowRepository) GetFollowers(ctx context.Context, userID uuid.UUID, c
 	}
 	defer rows.Close()
 
-	var followers []*domain.FollowUser
+	followers := make([]*domain.FollowUser, 0)
 	for rows.Next() {
 		var user domain.FollowUser
 		err := rows.Scan(
@@ -132,7 +132,7 @@ func (r *FollowRepository) GetFollowing(ctx context.Context, userID uuid.UUID, c
 	}
 	defer rows.Close()
 
-	var following []*domain.FollowUser
+	following := make([]*domain.FollowUser, 0)
 	for rows.Next() {
 		var user domain.FollowUser
 		err := rows.Scan(

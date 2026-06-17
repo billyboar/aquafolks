@@ -9,6 +9,8 @@ import Image from 'next/image';
 import { useWebSocket } from '@/lib/useWebSocket';
 import Header from '@/components/Header';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+
 export default function ConversationPage() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
@@ -53,7 +55,7 @@ export default function ConversationPage() {
     queryKey: ['messages', otherUserId],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:3000/api/v1/messages/conversations/${otherUserId}`,
+        `${API_URL}/api/v1/messages/conversations/${otherUserId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -61,7 +63,8 @@ export default function ConversationPage() {
         }
       );
       if (!res.ok) throw new Error('Failed to fetch messages');
-      return res.json();
+      const data = await res.json();
+      return data.messages ?? data;
     },
     enabled: !!token && !!otherUserId,
   });
@@ -69,13 +72,14 @@ export default function ConversationPage() {
   const { data: otherUser } = useQuery<User>({
     queryKey: ['user', otherUserId],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:3000/api/v1/users/${otherUserId}`, {
+      const res = await fetch(`${API_URL}/api/v1/users/${otherUserId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (!res.ok) throw new Error('Failed to fetch user');
-      return res.json();
+      const data = await res.json();
+      return data.user ?? data;
     },
     enabled: !!token && !!otherUserId,
   });
@@ -108,7 +112,7 @@ export default function ConversationPage() {
   const markAsReadMutation = useMutation({
     mutationFn: async (messageIds: string[]) => {
       for (const id of messageIds) {
-        await fetch(`http://localhost:3000/api/v1/messages/${id}/read`, {
+        await fetch(`${API_URL}/api/v1/messages/${id}/read`, {
           method: 'PUT',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -136,7 +140,7 @@ export default function ConversationPage() {
   // Send message mutation
   const sendMessageMutation = useMutation({
     mutationFn: async (content: string) => {
-      const res = await fetch('http://localhost:3000/api/v1/messages', {
+      const res = await fetch(`${API_URL}/api/v1/messages`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -229,7 +233,7 @@ export default function ConversationPage() {
       <div className="flex flex-col h-[calc(100vh-64px)] bg-gray-50">
         {/* Conversation Header */}
         <div className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="max-w-4xl mx-auto flex items-center gap-3">
+        <div className="max-w-5xl mx-auto flex items-center gap-3">
           <button
             onClick={() => router.push('/messages')}
             className="text-gray-600 hover:text-gray-900"
@@ -281,7 +285,7 @@ export default function ConversationPage() {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-6">
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-5xl mx-auto space-y-4">
           {isLoading ? (
             <div className="text-center text-gray-500">Loading messages...</div>
           ) : messages && messages.length > 0 ? (
@@ -338,7 +342,7 @@ export default function ConversationPage() {
 
       {/* Message input */}
       <div className="bg-white border-t border-gray-200 px-4 py-4">
-        <form onSubmit={handleSendMessage} className="max-w-4xl mx-auto">
+        <form onSubmit={handleSendMessage} className="max-w-5xl mx-auto">
           <div className="flex gap-2">
             <input
               type="text"

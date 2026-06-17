@@ -140,8 +140,12 @@ export function useFollowStats(userId: string) {
   return useQuery<FollowStats>({
     queryKey: ['follow-stats', userId],
     queryFn: async () => {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+      const headers: Record<string, string> = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
       const res = await fetch(
-        `${API_URL}/api/v1/users/${userId}/follow-stats`
+        `${API_URL}/api/v1/users/${userId}/follow-stats`,
+        { headers }
       );
 
       if (!res.ok) throw new Error('Failed to fetch follow stats');

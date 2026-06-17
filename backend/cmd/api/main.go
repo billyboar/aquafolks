@@ -67,6 +67,7 @@ func main() {
 	adminRepo := postgres.NewAdminRepository(db)
 	followRepo := postgres.NewFollowRepository(db)
 	passwordResetRepo := postgres.NewPasswordResetRepository(db)
+	oauthRepo := postgres.NewOAuthRepository(db)
 
 	// Initialize services
 	emailService := service.NewEmailService(
@@ -77,7 +78,7 @@ func main() {
 		cfg.FromEmail,
 		cfg.FromName,
 	)
-	authService := service.NewAuthService(userRepo, passwordResetRepo, emailService, cfg.JWTSecret, cfg.FrontendURL)
+	authService := service.NewAuthService(userRepo, passwordResetRepo, oauthRepo, emailService, cfg.JWTSecret, cfg.FrontendURL)
 	tankService := service.NewTankService(tankRepo)
 	fishSpeciesService := service.NewFishSpeciesService(fishSpeciesRepo)
 	livestockService := service.NewLivestockService(livestockRepo, tankRepo)
@@ -93,11 +94,12 @@ func main() {
 
 	// Initialize handlers
 	authHandler := handler.NewAuthHandler(authService)
+	oauthHandler := handler.NewOAuthHandler(authService, cfg.GoogleClientID, cfg.GoogleClientSecret, cfg.FacebookClientID, cfg.FacebookSecret, cfg.BackendURL, cfg.FrontendURL)
 	tankHandler := handler.NewTankHandler(tankService)
 	fishSpeciesHandler := handler.NewFishSpeciesHandler(fishSpeciesService)
 	livestockHandler := handler.NewLivestockHandler(livestockService)
 	photoHandler := handler.NewTankPhotoHandler(photoService)
-	commentHandler := handler.NewCommentHandler(commentService)
+	commentHandler := handler.NewCommentHandler(commentService, s3Client)
 	likeHandler := handler.NewLikeHandler(likeService)
 	projectHandler := handler.NewProjectHandler(projectService, s3Client)
 	listingHandler := handler.NewListingHandler(listingService, s3Client)
@@ -131,6 +133,9 @@ func main() {
 
 	// Register auth routes
 	authHandler.RegisterRoutes(app, cfg.JWTSecret)
+
+	// Register OAuth routes
+	oauthHandler.RegisterRoutes(app)
 
 	// Register tank routes
 	tankHandler.RegisterRoutes(app, cfg.JWTSecret)

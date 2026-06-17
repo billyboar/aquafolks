@@ -104,6 +104,14 @@ export interface UpdateTankInput {
   description?: string;
 }
 
+export interface CommentImage {
+  id: string;
+  comment_id: string;
+  image_url: string;
+  display_order: number;
+  created_at: string;
+}
+
 export interface Comment {
   id: string;
   user_id: string;
@@ -113,12 +121,14 @@ export interface Comment {
   created_at: string;
   updated_at: string;
   user?: User;
+  images?: CommentImage[];
 }
 
 export interface CreateCommentInput {
   commentable_type: string;
   commentable_id: string;
   content: string;
+  image_urls?: string[];
 }
 
 export interface Like {

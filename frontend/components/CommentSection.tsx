@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
+import Image from 'next/image';
+import Link from 'next/link';
 import CommentForm from './CommentForm';
+import { useAuth } from '@/lib/auth';
 import type { Comment } from '@/lib/types';
 
 interface CommentSectionProps {
@@ -86,6 +89,23 @@ function CommentItem({
           </div>
 
           <p className="text-text whitespace-pre-wrap">{comment.content}</p>
+
+          {/* Attached images */}
+          {comment.images && comment.images.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {comment.images.map((img, i) => (
+                <div key={img.id || i} className="relative w-24 h-24">
+                  <Image
+                    src={img.image_url}
+                    alt="comment attachment"
+                    fill
+                    className="object-cover rounded-lg"
+                    unoptimized
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {showDeleteConfirm && (
@@ -122,6 +142,7 @@ export default function CommentSection({
   commentableId,
 }: CommentSectionProps) {
   const queryClient = useQueryClient();
+  const { user } = useAuth();
 
   // Fetch comments
   const {
@@ -176,10 +197,17 @@ export default function CommentSection({
         <h2 className="text-xl font-semibold mb-4">
           Comments {comments && comments.length > 0 && `(${comments.length})`}
         </h2>
-        <CommentForm
-          commentableType={commentableType}
-          commentableId={commentableId}
-        />
+        {user ? (
+          <CommentForm
+            commentableType={commentableType}
+            commentableId={commentableId}
+          />
+        ) : (
+          <p className="text-sm text-[hsl(var(--on-surface-variant))] py-3">
+            <Link href="/login" className="text-[hsl(var(--primary))] hover:underline font-medium">Log in</Link>
+            {' '}to leave a comment.
+          </p>
+        )}
       </div>
 
       {comments && comments.length > 0 && (

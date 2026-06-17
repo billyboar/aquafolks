@@ -46,6 +46,32 @@ func JWTMiddleware(jwtSecret string) fiber.Handler {
 	}
 }
 
+// OptionalJWTMiddleware extracts user info from JWT if present, but doesn't require it
+func OptionalJWTMiddleware(jwtSecret string) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		authHeader := c.Get("Authorization")
+		if authHeader == "" {
+			return c.Next()
+		}
+
+		parts := strings.Split(authHeader, " ")
+		if len(parts) != 2 || parts[0] != "Bearer" {
+			return c.Next()
+		}
+
+		claims, err := auth.ValidateToken(parts[1], jwtSecret)
+		if err != nil {
+			return c.Next()
+		}
+
+		c.Locals("user_id", claims.UserID)
+		c.Locals("username", claims.Username)
+		c.Locals("email", claims.Email)
+
+		return c.Next()
+	}
+}
+
 // GetUserID extracts the user ID from the request context
 func GetUserID(c *fiber.Ctx) (uuid.UUID, error) {
 	userID, ok := c.Locals("user_id").(uuid.UUID)

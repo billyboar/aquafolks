@@ -24,7 +24,7 @@ const tankTypes: { value: TankType; label: string; description: string }[] = [
 ];
 
 export default function NewTankPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -146,6 +146,7 @@ export default function NewTankPage() {
     }
   };
 
+  if (authLoading) return null;
   if (!user) {
     router.push('/login');
     return null;
@@ -154,7 +155,7 @@ export default function NewTankPage() {
   return (
     <>
       <Header />
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Add a Tank</h1>
           <p className="text-[hsl(var(--on-surface-variant))]">

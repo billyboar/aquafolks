@@ -94,7 +94,7 @@ func (r *TankRepository) GetByUserID(ctx context.Context, userID string) ([]*dom
 	}
 	defer rows.Close()
 
-	var tanks []*domain.Tank
+	tanks := make([]*domain.Tank, 0)
 	for rows.Next() {
 		tank := &domain.Tank{}
 		err := rows.Scan(
@@ -205,7 +205,7 @@ func (r *TankRepository) List(ctx context.Context, limit, offset int) ([]*domain
 	}
 	defer rows.Close()
 
-	var tanks []*domain.Tank
+	tanks := make([]*domain.Tank, 0)
 	for rows.Next() {
 		tank := &domain.Tank{}
 		err := rows.Scan(

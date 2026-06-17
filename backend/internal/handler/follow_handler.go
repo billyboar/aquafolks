@@ -27,7 +27,7 @@ func (h *FollowHandler) RegisterRoutes(app *fiber.App, jwtSecret string) {
 	// Public routes - followers/following lists and stats
 	users.Get("/:id/followers", h.GetFollowers)
 	users.Get("/:id/following", h.GetFollowing)
-	users.Get("/:id/follow-stats", h.GetFollowStats)
+	users.Get("/:id/follow-stats", middleware.OptionalJWTMiddleware(jwtSecret), h.GetFollowStats)
 
 	// Protected routes - require authentication
 	users.Post("/:id/follow", middleware.JWTMiddleware(jwtSecret), h.Follow)

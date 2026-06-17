@@ -22,7 +22,7 @@ func NewLikeHandler(likeService *service.LikeService) *LikeHandler {
 func (h *LikeHandler) RegisterRoutes(app *fiber.App, jwtSecret string) {
 	// Like routes
 	app.Post("/api/v1/:type/:id/like", middleware.JWTMiddleware(jwtSecret), h.ToggleLike)
-	app.Get("/api/v1/:type/:id/likes", h.GetLikeStats)
+	app.Get("/api/v1/:type/:id/likes", middleware.OptionalJWTMiddleware(jwtSecret), h.GetLikeStats)
 }
 
 // ToggleLike toggles a like

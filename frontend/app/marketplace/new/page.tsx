@@ -9,7 +9,7 @@ import Image from 'next/image';
 import type { ListingCategory, ListingPriceType } from '@/lib/types';
 
 export default function NewListingPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
 
   const [step, setStep] = useState<'form' | 'payment'>('form');
@@ -31,6 +31,7 @@ export default function NewListingPage() {
   // Mock payment state
   const [paymentProcessing, setPaymentProcessing] = useState(false);
 
+  if (authLoading) return null;
   if (!user) {
     router.push('/login');
     return null;
@@ -146,7 +147,7 @@ export default function NewListingPage() {
     return (
       <>
         <Header />
-        <div className="max-w-2xl mx-auto px-4 py-8">
+        <div className="max-w-5xl mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold mb-8">Complete Your Listing</h1>
 
           <div className="bg-surface rounded-lg p-6 border border-border mb-6">
@@ -249,16 +250,17 @@ export default function NewListingPage() {
   return (
     <>
       <Header />
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8">Create a Listing</h1>
 
         <form onSubmit={handleSubmitForm} className="space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label htmlFor="listing-title" className="block text-sm font-medium mb-2">
               Title <span className="text-red-500">*</span>
             </label>
             <input
+              id="listing-title"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -271,10 +273,11 @@ export default function NewListingPage() {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label htmlFor="listing-description" className="block text-sm font-medium mb-2">
               Description <span className="text-red-500">*</span>
             </label>
             <textarea
+              id="listing-description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Describe your item in detail..."
@@ -287,10 +290,11 @@ export default function NewListingPage() {
           {/* Category & Condition */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label htmlFor="listing-category" className="block text-sm font-medium mb-2">
                 Category <span className="text-red-500">*</span>
               </label>
               <select
+                id="listing-category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value as ListingCategory)}
                 className="w-full px-4 py-3 rounded-lg border border-border bg-surface focus:outline-none focus:ring-2 focus:ring-primary"
@@ -321,10 +325,11 @@ export default function NewListingPage() {
           {/* Price Type & Price */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label htmlFor="listing-price-type" className="block text-sm font-medium mb-2">
                 Price Type <span className="text-red-500">*</span>
               </label>
               <select
+                id="listing-price-type"
                 value={priceType}
                 onChange={(e) => setPriceType(e.target.value as ListingPriceType)}
                 className="w-full px-4 py-3 rounded-lg border border-border bg-surface focus:outline-none focus:ring-2 focus:ring-primary"
@@ -358,12 +363,12 @@ export default function NewListingPage() {
           {/* Location */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label htmlFor="listing-city" className="block text-sm font-medium mb-2">
                 City <span className="text-red-500">*</span>
               </label>
               <input
+                id="listing-city"
                 type="text"
-                value={locationCity}
                 onChange={(e) => setLocationCity(e.target.value)}
                 placeholder="e.g., San Francisco"
                 className="w-full px-4 py-3 rounded-lg border border-border bg-surface focus:outline-none focus:ring-2 focus:ring-primary"
@@ -372,12 +377,12 @@ export default function NewListingPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label htmlFor="listing-state" className="block text-sm font-medium mb-2">
                 State <span className="text-red-500">*</span>
               </label>
               <input
+                id="listing-state"
                 type="text"
-                value={locationState}
                 onChange={(e) => setLocationState(e.target.value)}
                 placeholder="e.g., CA"
                 className="w-full px-4 py-3 rounded-lg border border-border bg-surface focus:outline-none focus:ring-2 focus:ring-primary"

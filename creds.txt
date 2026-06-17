@@ -1,0 +1,6 @@
+Regular user:
+- Email: testuser@aquafolks.com
+- Password: Test@12345
+Admin user:
+- Email: adminuser@aquafolks.com
+- Password: Admin@12345

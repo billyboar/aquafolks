@@ -13,6 +13,7 @@ interface UseWebSocketOptions {
 export function useWebSocket(token: string | null, options: UseWebSocketOptions = {}) {
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
+  const [lastMessage, setLastMessage] = useState<Message | null>(null)
   const wsRef = useRef<WebSocket | null>(null)
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const reconnectAttempts = useRef(0)
@@ -22,7 +23,8 @@ export function useWebSocket(token: string | null, options: UseWebSocketOptions 
 
     try {
       // WebSocket URL with token
-      const wsUrl = `ws://localhost:3000/ws?token=${token}`
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
+      const wsUrl = `${apiUrl.replace(/^http/, 'ws')}/ws?token=${token}`
       const ws = new WebSocket(wsUrl)
 
       ws.onopen = () => {
@@ -39,6 +41,7 @@ export function useWebSocket(token: string | null, options: UseWebSocketOptions 
             case 'message':
               const message = wsMessage.payload as Message
               setMessages(prev => [message, ...prev])
+              setLastMessage(message)
               options.onMessage?.(message)
               break
 
@@ -169,6 +172,7 @@ export function useWebSocket(token: string | null, options: UseWebSocketOptions 
   return {
     isConnected,
     messages,
+    lastMessage,
     sendMessage,
     sendTypingIndicator,
     sendReadReceipt,

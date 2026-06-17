@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth';
 import { useNotifications, useMarkAsRead, useMarkAllAsRead, useDeleteNotification } from '@/lib/api/notifications';
 import { Notification } from '@/lib/types';
 
 export default function NotificationsPage() {
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const [mounted, setMounted] = useState(false);
   const { data, isLoading, error } = useNotifications(page, 20);
@@ -16,6 +20,16 @@ export default function NotificationsPage() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/login');
+    }
+  }, [user, authLoading, router]);
+
+  if (authLoading || !user) {
+    return null;
+  }
 
   const handleMarkAsRead = (notificationId: number) => {
     markAsRead.mutate(notificationId);
@@ -104,7 +118,7 @@ export default function NotificationsPage() {
 
   if (!mounted || isLoading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="animate-pulse space-y-4">
           <div className="h-8 bg-[hsl(var(--surface-container))] rounded w-1/4" />
           {[1, 2, 3, 4, 5].map((i) => (
@@ -117,7 +131,7 @@ export default function NotificationsPage() {
 
   if (error) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="bg-[hsl(var(--error-container))] text-[hsl(var(--on-error-container))] p-4 rounded-lg">
           Error loading notifications. Please try again.
         </div>
@@ -128,7 +142,7 @@ export default function NotificationsPage() {
   const unreadCount = data?.notifications.filter(n => !n.is_read).length || 0;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>

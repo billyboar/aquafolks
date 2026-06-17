@@ -36,7 +36,7 @@ func (r *FishSpeciesRepository) Search(ctx context.Context, query string, limit 
 	}
 	defer rows.Close()
 
-	var species []*domain.FishSpecies
+	species := make([]*domain.FishSpecies, 0)
 	for rows.Next() {
 		sp := &domain.FishSpecies{}
 		err := rows.Scan(

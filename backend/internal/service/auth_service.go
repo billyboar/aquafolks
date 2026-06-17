@@ -12,21 +12,24 @@ import (
 
 	"aquabook/internal/domain"
 	"aquabook/internal/repository"
+	"aquabook/internal/repository/postgres"
 	"aquabook/pkg/auth"
 )
 
 type AuthService struct {
 	userRepo        repository.UserRepository
 	resetTokenRepo  repository.PasswordResetRepository
+	oauthRepo       *postgres.OAuthRepository
 	emailService    *EmailService
 	jwtSecret       string
 	frontendBaseURL string
 }
 
-func NewAuthService(userRepo repository.UserRepository, resetTokenRepo repository.PasswordResetRepository, emailService *EmailService, jwtSecret, frontendBaseURL string) *AuthService {
+func NewAuthService(userRepo repository.UserRepository, resetTokenRepo repository.PasswordResetRepository, oauthRepo *postgres.OAuthRepository, emailService *EmailService, jwtSecret, frontendBaseURL string) *AuthService {
 	return &AuthService{
 		userRepo:        userRepo,
 		resetTokenRepo:  resetTokenRepo,
+		oauthRepo:       oauthRepo,
 		emailService:    emailService,
 		jwtSecret:       jwtSecret,
 		frontendBaseURL: frontendBaseURL,
@@ -208,6 +211,80 @@ func (s *AuthService) ForgotPassword(ctx context.Context, email string) error {
 	}
 
 	return nil
+}
+
+// LoginWithOAuth finds or creates a user via OAuth provider and returns tokens
+func (s *AuthService) LoginWithOAuth(ctx context.Context, provider, providerID, email, displayName, avatarURL string) (*domain.User, *auth.TokenPair, error) {
+	// Check if oauth account already exists
+	oauthAcc, err := s.oauthRepo.GetByProvider(ctx, provider, providerID)
+	if err == nil {
+		// Existing oauth account - load user
+		user, err := s.userRepo.GetByID(ctx, oauthAcc.UserID)
+		if err != nil {
+			return nil, nil, fmt.Errorf("user not found for oauth account")
+		}
+		tokens, err := auth.GenerateTokenPair(user.ID, user.Username, user.Email, s.jwtSecret)
+		if err != nil {
+			return nil, nil, fmt.Errorf("failed to generate tokens: %w", err)
+		}
+		return user, tokens, nil
+	}
+
+	// Check if user with this email already exists (link accounts)
+	var user *domain.User
+	if email != "" {
+		user, _ = s.userRepo.GetByEmail(ctx, strings.ToLower(email))
+	}
+
+	if user == nil {
+		// Create new user
+		username := generateUsernameFromProvider(provider, providerID)
+		if displayName == "" {
+			displayName = username
+		}
+		newUser := &domain.User{
+			Username:    username,
+			Email:       strings.ToLower(email),
+			DisplayName: displayName,
+		}
+		if avatarURL != "" {
+			newUser.AvatarURL = &avatarURL
+		}
+		if err := s.userRepo.Create(ctx, newUser); err != nil {
+			return nil, nil, fmt.Errorf("failed to create user: %w", err)
+		}
+		user = newUser
+	}
+
+	// Create oauth account record
+	emailPtr := (*string)(nil)
+	if email != "" {
+		emailPtr = &email
+	}
+	acc := &domain.OAuthAccount{
+		UserID:     user.ID,
+		Provider:   provider,
+		ProviderID: providerID,
+		Email:      emailPtr,
+	}
+	if err := s.oauthRepo.Create(ctx, acc); err != nil {
+		return nil, nil, fmt.Errorf("failed to link oauth account: %w", err)
+	}
+
+	tokens, err := auth.GenerateTokenPair(user.ID, user.Username, user.Email, s.jwtSecret)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to generate tokens: %w", err)
+	}
+
+	return user, tokens, nil
+}
+
+func generateUsernameFromProvider(provider, providerID string) string {
+	short := providerID
+	if len(short) > 8 {
+		short = short[:8]
+	}
+	return provider + "_" + short
 }
 
 // ResetPassword resets a user's password using a valid token

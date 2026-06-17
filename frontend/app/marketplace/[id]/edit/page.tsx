@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { useMutation, useQuery } from '@tanstack/react-query'
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 import Image from 'next/image'
 
 type ListingCategory = 'fish' | 'plants' | 'equipment' | 'full_setup' | 'other'
@@ -38,7 +40,7 @@ export default function EditListingPage() {
     queryKey: ['listing', listingId],
     queryFn: async () => {
       const token = localStorage.getItem('token')
-      const res = await fetch(`http://localhost:3000/api/v1/marketplace/${listingId}`, {
+      const res = await fetch(`${API_URL}/api/v1/marketplace/${listingId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (!res.ok) throw new Error('Failed to fetch listing')
@@ -113,7 +115,7 @@ export default function EditListingPage() {
         const formData = new FormData()
         formData.append('photo', file)
 
-        const res = await fetch('http://localhost:3000/api/v1/marketplace/upload-photo', {
+        const res = await fetch(`${API_URL}/api/v1/marketplace/upload-photo`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           body: formData
@@ -152,7 +154,7 @@ export default function EditListingPage() {
         photo_urls: allPhotoUrls
       }
 
-      const res = await fetch(`http://localhost:3000/api/v1/marketplace/${listingId}`, {
+      const res = await fetch(`${API_URL}/api/v1/marketplace/${listingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -234,7 +236,7 @@ export default function EditListingPage() {
 
   return (
     <div className="min-h-screen bg-cream-50 py-8">
-      <div className="container mx-auto px-4 max-w-3xl">
+      <div className="max-w-5xl mx-auto px-4">
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-cream-900 mb-2">Edit Listing</h1>
           <p className="text-cream-600">Update your marketplace listing</p>

@@ -65,7 +65,7 @@ func (r *LivestockRepository) GetByTankID(ctx context.Context, tankID string) ([
 	}
 	defer rows.Close()
 
-	var livestocks []*domain.Livestock
+	livestocks := make([]*domain.Livestock, 0)
 	for rows.Next() {
 		livestock := &domain.Livestock{}
 		var fishSpecies domain.FishSpecies

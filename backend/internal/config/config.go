@@ -34,6 +34,13 @@ type Config struct {
 	DiscordSecret      string
 	FacebookClientID   string
 	FacebookSecret     string
+	AppleClientID      string
+	AppleTeamID        string
+	AppleKeyID         string
+	ApplePrivateKey    string
+
+	// Backend base URL (for OAuth callbacks)
+	BackendURL string
 
 	// Environment
 	Environment string // dev, staging, production
@@ -66,6 +73,11 @@ func Load() *Config {
 		DiscordSecret:      getEnv("DISCORD_SECRET", ""),
 		FacebookClientID:   getEnv("FACEBOOK_CLIENT_ID", ""),
 		FacebookSecret:     getEnv("FACEBOOK_SECRET", ""),
+		AppleClientID:      getEnv("APPLE_CLIENT_ID", ""),
+		AppleTeamID:        getEnv("APPLE_TEAM_ID", ""),
+		AppleKeyID:         getEnv("APPLE_KEY_ID", ""),
+		ApplePrivateKey:    getEnv("APPLE_PRIVATE_KEY", ""),
+		BackendURL:         getEnv("BACKEND_URL", "http://localhost:8080"),
 
 		Environment: getEnv("ENVIRONMENT", "dev"),
 	}

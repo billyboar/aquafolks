@@ -59,7 +59,7 @@ func (r *TankPhotoRepository) GetByTankID(ctx context.Context, tankID string) ([
 	}
 	defer rows.Close()
 
-	var photos []domain.TankPhoto
+	photos := make([]domain.TankPhoto, 0)
 	for rows.Next() {
 		var photo domain.TankPhoto
 		err := rows.Scan(

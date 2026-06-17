@@ -85,7 +85,7 @@ func (r *NotificationRepository) GetByUserID(ctx context.Context, userID uuid.UU
 	}
 	defer rows.Close()
 
-	var notifications []domain.Notification
+	notifications := make([]domain.Notification, 0)
 	for rows.Next() {
 		var n domain.Notification
 		var actor domain.User

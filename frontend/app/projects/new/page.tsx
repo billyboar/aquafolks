@@ -25,7 +25,7 @@ const projectStatuses: { value: ProjectStatus; label: string; description: strin
 ];
 
 export default function NewProjectPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -85,6 +85,7 @@ export default function NewProjectPage() {
     }
   };
 
+  if (authLoading) return null;
   if (!user) {
     router.push('/login');
     return null;
@@ -93,7 +94,7 @@ export default function NewProjectPage() {
   return (
     <>
       <Header />
-      <div className="max-w-3xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Create a Project</h1>
           <p className="text-[hsl(var(--on-surface-variant))]">

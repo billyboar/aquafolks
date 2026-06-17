@@ -114,7 +114,7 @@ func (r *ListingRepository) GetByID(ctx context.Context, id uuid.UUID, currentUs
 }
 
 func (r *ListingRepository) Search(ctx context.Context, filters *domain.SearchListingsFilter, currentUserID *uuid.UUID) ([]domain.Listing, error) {
-	var listings []domain.Listing
+	listings := make([]domain.Listing, 0)
 	var conditions []string
 	var args []interface{}
 	argIndex := 1

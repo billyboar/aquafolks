@@ -20,9 +20,9 @@ func NewMessageRepository(db *pgxpool.Pool) *MessageRepository {
 // Create creates a new message
 func (r *MessageRepository) Create(ctx context.Context, message *domain.Message) error {
 	query := `
-		INSERT INTO messages (sender_id, receiver_id, content)
+		INSERT INTO messages (sender_id, recipient_id, content)
 		VALUES ($1, $2, $3)
-		RETURNING id, created_at, updated_at, is_read
+		RETURNING id, created_at, updated_at
 	`
 
 	err := r.db.QueryRow(ctx, query,
@@ -33,8 +33,10 @@ func (r *MessageRepository) Create(ctx context.Context, message *domain.Message)
 		&message.ID,
 		&message.CreatedAt,
 		&message.UpdatedAt,
-		&message.IsRead,
 	)
+	if err == nil {
+		message.IsRead = false
+	}
 
 	return err
 }
@@ -42,9 +44,9 @@ func (r *MessageRepository) Create(ctx context.Context, message *domain.Message)
 // GetByID retrieves a message by ID
 func (r *MessageRepository) GetByID(ctx context.Context, id uuid.UUID) (*domain.Message, error) {
 	query := `
-		SELECT id, sender_id, receiver_id, content, is_read, created_at, updated_at
+		SELECT id, sender_id, recipient_id, content, (read_at IS NOT NULL) as is_read, created_at, updated_at
 		FROM messages
-		WHERE id = $1
+		WHERE id = $1 AND deleted_at IS NULL
 	`
 
 	var message domain.Message
@@ -68,10 +70,11 @@ func (r *MessageRepository) GetByID(ctx context.Context, id uuid.UUID) (*domain.
 // GetConversation retrieves all messages between two users
 func (r *MessageRepository) GetConversation(ctx context.Context, user1ID, user2ID uuid.UUID, limit, offset int) ([]*domain.Message, error) {
 	query := `
-		SELECT id, sender_id, receiver_id, content, is_read, created_at, updated_at
+		SELECT id, sender_id, recipient_id, content, (read_at IS NOT NULL) as is_read, created_at, updated_at
 		FROM messages
-		WHERE (sender_id = $1 AND receiver_id = $2) OR (sender_id = $2 AND receiver_id = $1)
-		ORDER BY created_at DESC
+		WHERE ((sender_id = $1 AND recipient_id = $2) OR (sender_id = $2 AND recipient_id = $1))
+		  AND deleted_at IS NULL
+		ORDER BY created_at ASC
 		LIMIT $3 OFFSET $4
 	`
 
@@ -81,7 +84,7 @@ func (r *MessageRepository) GetConversation(ctx context.Context, user1ID, user2I
 	}
 	defer rows.Close()
 
-	var messages []*domain.Message
+	messages := make([]*domain.Message, 0)
 	for rows.Next() {
 		var message domain.Message
 		err := rows.Scan(
@@ -108,12 +111,12 @@ func (r *MessageRepository) GetConversations(ctx context.Context, userID uuid.UU
 		WITH user_conversations AS (
 			SELECT 
 				CASE 
-					WHEN sender_id = $1 THEN receiver_id
+					WHEN sender_id = $1 THEN recipient_id
 					ELSE sender_id
 				END AS other_user_id,
 				MAX(created_at) AS last_message_at
 			FROM messages
-			WHERE sender_id = $1 OR receiver_id = $1
+			WHERE (sender_id = $1 OR recipient_id = $1) AND deleted_at IS NULL
 			GROUP BY other_user_id
 		),
 		latest_messages AS (
@@ -121,15 +124,16 @@ func (r *MessageRepository) GetConversations(ctx context.Context, userID uuid.UU
 				uc.other_user_id,
 				m.id,
 				m.sender_id,
-				m.receiver_id,
+				m.recipient_id,
 				m.content AS last_message,
-				m.is_read,
+				(m.read_at IS NOT NULL) as is_read,
 				m.created_at AS last_message_at
 			FROM user_conversations uc
 			JOIN messages m ON (
-				(m.sender_id = $1 AND m.receiver_id = uc.other_user_id) OR
-				(m.sender_id = uc.other_user_id AND m.receiver_id = $1)
+				(m.sender_id = $1 AND m.recipient_id = uc.other_user_id) OR
+				(m.sender_id = uc.other_user_id AND m.recipient_id = $1)
 			)
+			WHERE m.deleted_at IS NULL
 			ORDER BY uc.other_user_id, m.created_at DESC
 		),
 		unread_counts AS (
@@ -137,7 +141,7 @@ func (r *MessageRepository) GetConversations(ctx context.Context, userID uuid.UU
 				sender_id AS other_user_id,
 				COUNT(*) AS unread_count
 			FROM messages
-			WHERE receiver_id = $1 AND is_read = FALSE
+			WHERE recipient_id = $1 AND read_at IS NULL AND deleted_at IS NULL
 			GROUP BY sender_id
 		)
 		SELECT 
@@ -158,7 +162,7 @@ func (r *MessageRepository) GetConversations(ctx context.Context, userID uuid.UU
 	}
 	defer rows.Close()
 
-	var conversations []*domain.Conversation
+	conversations := make([]*domain.Conversation, 0)
 	for rows.Next() {
 		var conv domain.Conversation
 		var otherUserID uuid.UUID
@@ -194,8 +198,8 @@ func (r *MessageRepository) GetConversations(ctx context.Context, userID uuid.UU
 func (r *MessageRepository) MarkAsRead(ctx context.Context, messageID uuid.UUID) error {
 	query := `
 		UPDATE messages
-		SET is_read = TRUE
-		WHERE id = $1
+		SET read_at = NOW()
+		WHERE id = $1 AND read_at IS NULL
 	`
 
 	_, err := r.db.Exec(ctx, query, messageID)
@@ -206,8 +210,8 @@ func (r *MessageRepository) MarkAsRead(ctx context.Context, messageID uuid.UUID)
 func (r *MessageRepository) MarkConversationAsRead(ctx context.Context, userID, otherUserID uuid.UUID) error {
 	query := `
 		UPDATE messages
-		SET is_read = TRUE
-		WHERE receiver_id = $1 AND sender_id = $2 AND is_read = FALSE
+		SET read_at = NOW()
+		WHERE recipient_id = $1 AND sender_id = $2 AND read_at IS NULL
 	`
 
 	_, err := r.db.Exec(ctx, query, userID, otherUserID)
@@ -219,7 +223,7 @@ func (r *MessageRepository) GetUnreadCount(ctx context.Context, userID uuid.UUID
 	query := `
 		SELECT COUNT(*)
 		FROM messages
-		WHERE receiver_id = $1 AND is_read = FALSE
+		WHERE recipient_id = $1 AND read_at IS NULL AND deleted_at IS NULL
 	`
 
 	var count int
@@ -236,7 +240,7 @@ func (r *MessageRepository) Delete(ctx context.Context, messageID, userID uuid.U
 	// Only the sender can delete their own messages
 	query := `
 		UPDATE messages
-		SET content = '[Message deleted]'
+		SET content = '[Message deleted]', deleted_at = NOW()
 		WHERE id = $1 AND sender_id = $2
 	`
 
@@ -256,10 +260,11 @@ func (r *MessageRepository) Delete(ctx context.Context, messageID, userID uuid.U
 // Search searches messages by content
 func (r *MessageRepository) Search(ctx context.Context, userID uuid.UUID, query string, limit int) ([]*domain.Message, error) {
 	searchQuery := `
-		SELECT id, sender_id, receiver_id, content, is_read, created_at, updated_at
+		SELECT id, sender_id, recipient_id, content, (read_at IS NOT NULL) as is_read, created_at, updated_at
 		FROM messages
-		WHERE (sender_id = $1 OR receiver_id = $1)
+		WHERE (sender_id = $1 OR recipient_id = $1)
 		  AND content ILIKE $2
+		  AND deleted_at IS NULL
 		ORDER BY created_at DESC
 		LIMIT $3
 	`
@@ -270,7 +275,7 @@ func (r *MessageRepository) Search(ctx context.Context, userID uuid.UUID, query 
 	}
 	defer rows.Close()
 
-	var messages []*domain.Message
+	messages := make([]*domain.Message, 0)
 	for rows.Next() {
 		var message domain.Message
 		err := rows.Scan(
